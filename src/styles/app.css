@@ -36,7 +36,7 @@ html,body {
   --dark-grey: var(--dark);
 }
 
-#app {
+main {
   background-color: var(--grey);
   max-width: 1200px;
   margin: 2rem 0;
@@ -53,7 +53,7 @@ html,body {
 }
 
 @media only screen and (max-width: 800px) {
-  #app { grid-template-columns: 1fr; }
+  main { grid-template-columns: 1fr; }
 }
 
 ::selection {
