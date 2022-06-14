@@ -1,0 +1,73 @@
+/* @import "./src/styles/loader.css"; */
+
+:root {
+  --brand: #1aa892;
+  --accent: #553897;
+  --success: #4bb434;
+  --negative: #b74271;
+  --grey: #cacaca;
+  --dark-grey: #808080;
+  --darker: #2f2c3a;
+  --dark: #464257;
+  --white: #FFF;
+  --black: #000;
+}
+
+hello-world {
+  font-weight: bold;
+  color: red;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+}
+
+html,body {
+  height: 100%;
+  margin: 0;
+  background-color: var(--grey)
+}
+
+.dark-mode {
+  color: white;
+  --white: var(--dark);
+  --grey: var(--darker);
+  --dark-grey: var(--dark);
+}
+
+html {
+  font-family: Montserrat, Oswald, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+#app {
+  background-color: var(--grey);
+  max-width: 1200px;
+  margin: 2rem 0;
+  padding: 4rem;
+  height: 50vh;
+  display: grid;
+  grid-gap: 1rem;
+  grid-auto-flow: dense;
+  grid-template-columns: 2fr 1fr 2fr;
+  min-width: 100vw;
+  justify-items: stretch;
+  gap: 1rem;
+  place-items: center;
+}
+
+@media only screen and (max-width: 800px) {
+  #app { grid-template-columns: 1fr; }
+}
+
+::selection {
+  color: var(--white);
+  background: var(--brand);
+}
+

@@ -1,0 +1,34 @@
+<template>
+  <button> 
+    <img class="mama" src="../assets/switch.svg" width="28">
+  </button>
+</template>
+
+<style>
+button {
+  width: 3em;
+  height: 3em;
+  border-radius: 50%;
+  box-shadow: var(--dark-grey) 0px 0px 6px;
+  border: none;
+  color: var(--white);
+  font-weight: bold;
+  background: var(--brand);
+  padding: 4px 0;
+}
+@media (max-width: 800px) {
+  button {
+    transform: rotate(90deg);
+    padding: 8px 0;
+  }
+}
+</style>
+
+<script>
+export default {
+  name: 'currency-switch',
+  onClick() {
+    window.dispatchEvent(new CustomEvent('switch-currency'))
+  }
+}
+</script>

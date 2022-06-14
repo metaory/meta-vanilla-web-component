@@ -1,0 +1,57 @@
+<template>
+  <loading>loading...<loader/></loading>
+</template>
+
+<style>
+loading {
+  visibility: visible;
+  display: grid;
+  font-size: 3rem;
+  opacity: 0.9;
+  place-content: center;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--black);
+  color: var(--brand);
+  top: 0;
+}
+loader {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  padding: 4vh 13vh;
+}
+loader:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid var(--brand);
+  border-color: var(--brand) transparent var(--brand) transparent;
+  animation: loading 1.2s linear infinite;
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+</style>
+
+<script>
+const $loading = document.querySelector('loader-modal')
+
+export default { 
+  name: 'loader-modal',
+  show(visible = true) {
+    $loading.shadowRoot.querySelector('loading')
+      .style
+      .visibility = visible ? 'visible' : 'collapse'
+  }
+}
+</script>
