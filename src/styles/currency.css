@@ -71,7 +71,7 @@ input[type=number] {
   -moz-appearance: none;
   appearance: none;
   width: 100%;
-  min-width: 6rem;
+  min-width: 6.5rem;
 
   border-right: solid var(--white) 3px;
   border-radius: 4px;
