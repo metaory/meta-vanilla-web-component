@@ -7,13 +7,13 @@ const template = document.createElement('template')
 template.innerHTML = `
 <link rel="stylesheet" href="src/styles/currency.css">
 <span>$</span>
-<input type="number" name="quantity" min="0" max="100" value="1">
+<input type="number" name="currency" min="0" max="9999" value="1">
 <div class="select-dropdown">
-<select>
-<option value="USD">USD</option>
-<option value="EUR">EUR</option>
-<option value="JPY">JPY</option>
-</select>
+  <select>
+    <option value="USD">USD</option>
+    <option value="EUR">EUR</option>
+    <option value="JPY">JPY</option>
+  </select>
 </div>
 `
 
