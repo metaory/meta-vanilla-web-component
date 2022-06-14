@@ -1,8 +1,11 @@
 export default async function(src, dst, amount = 1) {
   console.log('FETCH RATES:', { src, dst, amount })
 
+  const loader = document.querySelector('loader-modal')
+  const alert = document.querySelector('alert-component')
+
   return new Promise(async (resolve) => {
-    document.querySelector('loader-modal').show(true)
+    loader.show(true)
 
     fetch(`https://api.apilayer.com/fixer/latest?base=${src}&symbols=${dst}&amount=${amount}`, {
       headers: {
@@ -12,7 +15,7 @@ export default async function(src, dst, amount = 1) {
     })
       .then(response => {
         if (response.ok) {
-          document.querySelector('alert-component').show('Fetched!', 'var(--success)')
+          alert.show('Fetched!', 'var(--success)')
           return resolve(response.json())
         }
         const errors = { 429: '429 Too Many Requests, falling back to dummy response.' }
@@ -20,11 +23,11 @@ export default async function(src, dst, amount = 1) {
       })
       .catch(err => {
         console.error('E!:', err)
-        document.querySelector('alert-component').show(err.message, 'var(--negative)')
+        alert.show(err.message, 'var(--negative)')
         resolve({ rates: { [dst]: (Math.random() * 1000).toFixed(2) } })
       })
       .finally(() => {
-        document.querySelector('loader-modal').show(false)
+        loader.show(false)
       })
   })
 }

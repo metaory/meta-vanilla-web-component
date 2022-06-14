@@ -18,3 +18,5 @@ window.addEventListener('fetch', (event) => {
   const { bounceRate } = event.detail
   updateRates(bounceRate)
 })
+
+// setInterval(() => window.location.reload(), 10000)

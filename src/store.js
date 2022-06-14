@@ -7,6 +7,7 @@ const handler = {
   },
   set: function(obj, prop, value) {
     obj[prop] = value
+    // window[prop] = value
     window.dispatchEvent(new CustomEvent('render'))
 
     if (['srcSymbol', 'dstSymbol', 'srcAmount'].includes(prop)) {
@@ -17,13 +18,17 @@ const handler = {
   }
 }
 const currencyProxy = new Proxy(currency, handler)
-export { currencyProxy as default } 
+export { currencyProxy as default }
 
-window.addEventListener('switch-currency', () => {
+window.addEventListener('switch:currency', () => {
   const { srcSymbol: oldSrc, dstSymbol: oldDst } = currencyProxy
-
   currencyProxy.srcSymbol = oldDst
   currencyProxy.dstSymbol = oldSrc
   window.dispatchEvent(new CustomEvent('fetch', {"detail": { bounceRate: 0 }}))
 })
 
+// window.addEventListener('update:proxy', (event) => {
+//   for (const key in event.detail) {
+//     currencyProxy[key] = event.detail[key]
+//   }
+// })
