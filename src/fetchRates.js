@@ -13,7 +13,7 @@ export default async function(src, dst, amount = 1) {
       .then(response => {
         if (response.ok) {
           document.querySelector('alert-component').show('Fetched!', 'var(--success)')
-          return response.json()
+          return resolve(response.json())
         }
         const errors = { 429: '429 Too Many Requests, falling back to dummy response.' }
         throw new Error(errors[response.status] || response.status)
