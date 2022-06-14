@@ -1,3 +1,5 @@
+/* THIS FILE IS RAW WEB COMPONENT */ 
+
 const { log } = console
 import currencyProxy from '../store.js'
 

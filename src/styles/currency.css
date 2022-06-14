@@ -29,7 +29,7 @@ input {
   font-size: 2rem;
   font-weight: bold;
   place-self: normal;
-  max-width: 8rem;
+  max-width: 10rem;
 }
 input:focus {
   outline: 0;
