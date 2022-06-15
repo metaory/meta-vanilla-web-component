@@ -1,5 +1,5 @@
 window.loadComponent = (() => {
-  const fetchAndParse = async (URL) => {
+  const fetchAndParse = (URL) => {
     return fetch(URL).then((response) => {
       return response.text()
     }).then((html) => {
@@ -18,7 +18,7 @@ window.loadComponent = (() => {
     })
   }
 
-  const getSettings = async ({ template, style, script }) => {
+  const getSettings = ({ template, style, script }) => {
     const jsFile = new Blob([script.textContent], { type: 'application/javascript' })
     const jsURL = URL.createObjectURL(jsFile)
 
@@ -99,7 +99,7 @@ window.loadComponent = (() => {
     return customElements.define(name, UnityComponent)
   }
 
-  const loadComponent = async (URL) =>
+  const loadComponent = (URL) =>
     fetchAndParse(URL).then(getSettings).then(registerComponent)
 
   return loadComponent
