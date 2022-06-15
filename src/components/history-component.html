@@ -14,16 +14,40 @@
 </style>
 
 <script>
+const MAX_STORAGE_LENGTH = 10
+const STORAGE_KEY = 'currency-history'
+
 const $history = document.querySelector('history-component')
 
-// TODO localstorage
-window.addEventListener('converted', (event) => {
-  const { currencyProxy: { srcAmount, srcSymbol, dstAmount, dstSymbol} } = event.detail
-
+const prependToDom = ({ srcAmount, srcSymbol, dstAmount, dstSymbol}) => {
   const div = document.createElement("div");
-  div.innerText = `Converted ${srcAmount}${srcSymbol} to ${dstAmount}${dstSymbol} `
-
+  div.innerText = `Converted ${srcAmount}${srcSymbol} to ${dstAmount}${dstSymbol}`
   $history.shadowRoot.prepend(div)
+}
+
+const fetchStorage = () => {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+  }
+  catch (err) {
+    localStorage.removeItem(STORAGE_KEY)
+    return []
+  }
+}
+
+const addToStorage = (currencyProxy) => {
+  const list = fetchStorage()
+  list.unshift(currencyProxy)
+  if (list.length > MAX_STORAGE_LENGTH) list.pop()
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
+}
+
+setTimeout(() => fetchStorage().reverse().forEach((x) => prependToDom(x)), 0)
+
+window.addEventListener('converted', (event) => {
+  const { currencyProxy } = event.detail
+  prependToDom(currencyProxy)
+  addToStorage(currencyProxy)
 })
 
 export default { name: 'history-component', }
