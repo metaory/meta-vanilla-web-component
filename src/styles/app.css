@@ -59,8 +59,3 @@ main {
   main { grid-template-columns: 1fr; }
 }
 
-::selection {
-  color: var(--white);
-  background: var(--brand);
-}
-
