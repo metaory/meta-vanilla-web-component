@@ -22,7 +22,7 @@ const $history = document.querySelector('history-component')
 
 const prependToDom = ({ srcAmount, srcSymbol, dstAmount, dstSymbol}) => {
   const div = document.createElement("div");
-  div.innerHTML = `${srcAmount}${srcSymbol} &#10095; ${dstAmount}${dstSymbol}`
+  div.innerHTML = `<b>${srcAmount}</b>${srcSymbol} &#10093; <b>${dstAmount}</b>${dstSymbol}`
   $history.shadowRoot.prepend(div)
 }
 
