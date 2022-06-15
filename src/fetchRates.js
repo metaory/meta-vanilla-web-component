@@ -18,6 +18,7 @@ export default async function(src, dst, amount = 1) {
       headers: {
         'Content-Type': 'application/json',
         'apikey': 'XQ3vQ3XkBKNIq2tN4RGPA2o4ZhEGo8NN' // TODO read from gh secrets
+        // 'apikey': 'ujucsc0WvJwnxeKGIk9aRKGmmRuKSffc' // TODO read from gh secrets
       },
     })
       .then(response => {
