@@ -63,6 +63,7 @@ select {
   /* border-right: solid var(--white) 3px; */
   /* border-radius: 8px; */
 }
+
 select:hover {
   color: var(--accent);
 }

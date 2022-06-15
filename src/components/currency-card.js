@@ -56,6 +56,7 @@ class CurrencyCard extends HTMLElement {
         break
     }
   }
+
   _bindProxy() {
     const _this = this
     window.addEventListener('render', () => {
@@ -79,6 +80,7 @@ class CurrencyCard extends HTMLElement {
     this.$input.addEventListener("keyup", onInputKeyUp)
     this.$select.addEventListener("change", onSelectUpdate)
   }
+
   _render() {
     const $src = document.querySelector("currency-card[direction=src]")
     const $dst = document.querySelector("currency-card[direction=dst]")
@@ -89,17 +91,21 @@ class CurrencyCard extends HTMLElement {
     $src.shadowRoot.querySelector('select').value = currencyProxy.srcSymbol
     $dst.shadowRoot.querySelector('select').value = currencyProxy.dstSymbol
   }
+
   connectedCallback() {
     this._populate()
     this._bindProxy()
   }
+
   _copyResult ()  {
     navigator.clipboard.writeText(this.$input.value)
     this.$alert.show('Copied!', 'var(--accent)')
   }
+
   static get observedAttributes() {
     return ['direction']
   }
+
   attributeChangedCallback(property, oldValue, newValue) {
     if (oldValue === newValue) return
     this[property] = newValue
