@@ -1,6 +1,5 @@
-/* THIS FILE IS RAW WEB COMPONENT */ 
+/* THIS FILE IS RAW WEB COMPONENT */
 
-const { log } = console
 import currencyProxy from '../store.js'
 
 const template = document.createElement('template')
@@ -21,29 +20,29 @@ class CurrencyCard extends HTMLElement {
   $input
   $select
   $alert
-  constructor() {
+  constructor () {
     super()
     if (!this.shadowRoot) {
       this.attachShadow({ mode: 'open' })
     }
   }
-  get direction() {
+
+  get direction () {
     return this.getAttribute('direction')
   }
 
-  set direction(val) {
-    val 
+  set direction (val) {
+    val
       ? this.setAttribute('direction', val)
       : this.removeAttribute('direction')
   }
 
-  _populate() {
+  _populate () {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
     this.$input = this.shadowRoot.querySelector('input')
     this.$select = this.shadowRoot.querySelector('select')
     this.$alert = document.querySelector('alert-component')
 
-    console.log(this.$input, '::', this.shadowRoot, this.direction)
     switch (this.direction) {
       case 'src':
         this.$select.value = 'USD'
@@ -57,17 +56,17 @@ class CurrencyCard extends HTMLElement {
     }
   }
 
-  _bindProxy() {
+  _bindProxy () {
     const _this = this
     window.addEventListener('render', () => {
       _this._render()
     })
 
-    function onSelectUpdate(evt) {
+    function onSelectUpdate (evt) {
       currencyProxy[`${_this.direction}Symbol`] = evt.target.value
     }
 
-    function onInputKeyUp(evt) {
+    function onInputKeyUp (evt) {
       if (_this.direction === 'dst') {
         this.value = currencyProxy.dstAmount
         _this.$input.blur()
@@ -77,13 +76,13 @@ class CurrencyCard extends HTMLElement {
       return false
     }
 
-    this.$input.addEventListener("keyup", onInputKeyUp)
-    this.$select.addEventListener("change", onSelectUpdate)
+    this.$input.addEventListener('keyup', onInputKeyUp)
+    this.$select.addEventListener('change', onSelectUpdate)
   }
 
-  _render() {
-    const $src = document.querySelector("currency-card[direction=src]")
-    const $dst = document.querySelector("currency-card[direction=dst]")
+  _render () {
+    const $src = document.querySelector('currency-card[direction=src]')
+    const $dst = document.querySelector('currency-card[direction=dst]')
 
     $src.shadowRoot.querySelector('input').value = currencyProxy.srcAmount
     $dst.shadowRoot.querySelector('input').value = currencyProxy.dstAmount
@@ -92,25 +91,25 @@ class CurrencyCard extends HTMLElement {
     $dst.shadowRoot.querySelector('select').value = currencyProxy.dstSymbol
   }
 
-  connectedCallback() {
+  connectedCallback () {
     this._populate()
     this._bindProxy()
   }
 
-  _copyResult ()  {
+  _copyResult () {
     navigator.clipboard.writeText(this.$input.value)
     this.$alert.show('Copied!', 'var(--accent)')
   }
 
-  static get observedAttributes() {
+  static get observedAttributes () {
     return ['direction']
   }
 
-  attributeChangedCallback(property, oldValue, newValue) {
+  attributeChangedCallback (property, oldValue, newValue) {
     if (oldValue === newValue) return
     this[property] = newValue
     console.log('!!', newValue, this.direction)
   }
 }
 
-customElements.define( 'currency-card', CurrencyCard )
+customElements.define('currency-card', CurrencyCard)

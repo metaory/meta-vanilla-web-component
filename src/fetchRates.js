@@ -1,12 +1,11 @@
-export default async function(src, dst, amount = 1) {
+export default function (src, dst, amount = 1) {
   console.log('FETCH RATES:', { src, dst, amount })
 
   const loader = document.querySelector('loader-modal')
   const alert = document.querySelector('alert-component')
 
-  return new Promise(async (resolve) => {
+  return new Promise((resolve) => {
     loader.show(true)
-
     /* DEBUG MODE */
     // return setTimeout(() => {
     //   loader.show(false)
@@ -17,10 +16,10 @@ export default async function(src, dst, amount = 1) {
     fetch(`https://api.apilayer.com/fixer/latest?base=${src}&symbols=${dst}&amount=${amount}`, {
       headers: {
         'Content-Type': 'application/json',
-        // 'apikey': 'XQ3vQ3XkBKNIq2tN4RGPA2o4ZhEGo8NN' // TODO read from gh secrets
-        // 'apikey': 'ujucsc0WvJwnxeKGIk9aRKGmmRuKSffc' // TODO read from gh secrets
-        'apikey': '8y6JGnCQwveSeNSBKWiHgra8dixwLY35'
-      },
+        // apikey: 'XQ3vQ3XkBKNIq2tN4RGPA2o4ZhEGo8NN' // TODO read from gh secrets
+        // apikey: 'ujucsc0WvJwnxeKGIk9aRKGmmRuKSffc' // TODO read from gh secrets
+        apikey: '8y6JGnCQwveSeNSBKWiHgra8dixwLY35'
+      }
     })
       .then(response => {
         if (response.ok) {
@@ -40,4 +39,3 @@ export default async function(src, dst, amount = 1) {
       })
   })
 }
-
