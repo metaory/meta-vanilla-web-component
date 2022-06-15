@@ -6,8 +6,7 @@ export default async function(src, dst, amount = 1) {
 
   return new Promise(async (resolve) => {
     loader.show(true)
-    // loader.show(false)
-    // return resolve({ rates: { [dst]: (Math.random() * 1000).toFixed(2) } })
+    // return setTimeout(() => { loader.show(false); resolve({ rates: { [dst]: (Math.random() * 1000).toFixed(2) } })}, 0)
 
     fetch(`https://api.apilayer.com/fixer/latest?base=${src}&symbols=${dst}&amount=${amount}`, {
       headers: {

@@ -31,7 +31,6 @@ html,body {
 
 .dark-mode {
   color: white;
-  --black: var(--brand);
   --white: var(--dark);
   --grey: var(--darker);
   --dark-grey: var(--dark);
@@ -42,7 +41,7 @@ main {
   max-width: 1200px;
   margin: 2rem 0;
   padding: 4rem;
-  height: 55vh;
+  height: 50vh;
   display: grid;
   grid-gap: 1rem;
   grid-auto-flow: dense;
