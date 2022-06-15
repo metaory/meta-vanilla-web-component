@@ -56,39 +56,40 @@ window.loadComponent = (() => {
 
   const registerComponent = ({ template, style, name, listeners, methods }) => {
     class UnityComponent extends HTMLElement {
-      constructor() {
-        super();
-        this.shadow = this.attachShadow({ mode: 'open' });
+      constructor () {
+        super()
+        this.shadow = this.attachShadow({ mode: 'open' })
       }
 
-      connectedCallback() {
+      connectedCallback () {
         this._upcast()
         this._attachListeners()
         this._attachMethods()
       }
 
-      static get observedAttributes() {
+      static get observedAttributes () {
         return ['name']
       }
 
-      attributeChangedCallback(property, oldValue, newValue) {
-        if (oldValue === newValue) return;
-        this[property] = newValue;
+      attributeChangedCallback (property, oldValue, newValue) {
+        if (oldValue === newValue) return
+        this[property] = newValue
       }
 
-      _upcast() {
+      _upcast () {
         this.shadow.appendChild(style.cloneNode(true))
         this.shadow.appendChild(document.importNode(template.content, true))
       }
 
-      _attachListeners() {
+      _attachListeners () {
         Object.entries(listeners).forEach(([event, listener]) => {
           this.addEventListener(event, listener, false)
         })
       }
-      _attachMethods() {
+
+      _attachMethods () {
         Object.entries(methods).forEach(([method, value]) => {
-          console.log('****', {method,value})
+          console.log('****', { method, value })
           this[method] = value
         })
       }

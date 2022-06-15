@@ -24,6 +24,7 @@
 html,body {
   height: 100%;
   margin: 0;
+  overflow: hidden;
   background-color: var(--grey);
   font-family: Montserrat, Oswald, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
