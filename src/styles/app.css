@@ -11,6 +11,7 @@
   --dark: #464257;
   --white: #FFF;
   --black: #000;
+  --hover: var(--accent);
 }
 
 * {
@@ -36,6 +37,7 @@ html,body {
   --white: var(--dark);
   --grey: var(--darker);
   --dark-grey: var(--dark);
+  --hover: var(--negative);
 }
 
 main {

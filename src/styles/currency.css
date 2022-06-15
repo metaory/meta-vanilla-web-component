@@ -65,7 +65,7 @@ select {
 }
 
 select:hover {
-  color: var(--accent);
+  color: var(--hover);
 }
 select:active, select:focus {
   outline: none;

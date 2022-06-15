@@ -13,8 +13,7 @@ template.innerHTML = `
     <option value="EUR">EUR</option>
     <option value="JPY">JPY</option>
   </select>
-</div>
-`
+</div>`
 
 class CurrencyCard extends HTMLElement {
   $input
