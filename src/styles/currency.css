@@ -60,8 +60,8 @@ select {
   appearance: none;
   width: 100%;
   min-width: 6.5rem;
-  border-right: solid var(--white) 3px;
-  border-radius: 8px;
+  /* border-right: solid var(--white) 3px; */
+  /* border-radius: 8px; */
 }
 select:hover {
   color: var(--accent);

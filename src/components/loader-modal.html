@@ -1,55 +1,168 @@
 <template>
-  <loading>loading...<loader/></loading>
+  <div class="loader">
+    <svg viewBox="0 0 80 80">
+      <circle cx="40" cy="40" r="32"></circle>
+    </svg>
+  </div>
+
+  <div class="loader triangle">
+    <svg viewBox="0 0 86 80">
+      <polygon points="43 8 79 72 7 72"></polygon>
+    </svg>
+  </div>
+
+  <div class="loader">
+    <svg viewBox="0 0 80 80">
+      <rect x="8" y="8" width="64" height="64"></rect>
+    </svg>
+  </div>
 </template>
 
 <style>
-loading {
-  visibility: visible;
-  display: grid;
-  font-size: 3rem;
-  opacity: 0.7;
-  place-content: center;
-  position: fixed;
+:host {
   width: 100vw;
   height: 100vh;
-  background-color: var(--black);
-  color: var(--brand);
+  position: fixed !important;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-flow: dense;
   top: 0;
+  justify-items: center;
+  align-items: center;
+  background-color: black;
+  opacity: 0.8;
 }
-loader {
-  display: inline-block;
-  width: 80px;
-  height: 80px;
-  padding: 4vh 12vh;
+div {
+  --path: var(--accent);
+  --dot: var(--brand);
+  --duration: 3s;
+  width: 44px;
+  height: 44px;
+  position: relative;
 }
-loader:after {
-  content: " ";
-  display: block;
-  width: 64px;
-  height: 64px;
-  margin: 8px;
+div:before {
+  content: '';
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
-  border: 6px solid var(--brand);
-  border-color: var(--brand) transparent var(--brand) transparent;
-  animation: loading 1.2s linear infinite;
+  position: absolute;
+  display: block;
+  background: var(--dot);
+  top: 37px;
+  left: 19px;
+  transform: translate(-18px, -18px);
+  animation: dotRect var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
 }
-@keyframes loading {
-  0% {
-    transform: rotate(0deg);
+div svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+div svg rect, div svg polygon, div svg circle {
+  fill: none;
+  stroke: var(--path);
+  stroke-width: 10px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+div svg polygon {
+  stroke-dasharray: 145 76 145 76;
+  stroke-dashoffset: 0;
+  animation: pathTriangle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+div svg rect {
+  stroke-dasharray: 192 64 192 64;
+  stroke-dashoffset: 0;
+  animation: pathRect 3s cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+div svg circle {
+  stroke-dasharray: 150 50 150 50;
+  stroke-dashoffset: 75;
+  animation: pathCircle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+div.triangle {
+  width: 48px;
+}
+div.triangle:before {
+  left: 21px;
+  transform: translate(-10px, -18px);
+  animation: dotTriangle var(--duration) cubic-bezier(0.785, 0.135, 0.15, 0.86) infinite;
+}
+@keyframes pathTriangle {
+  33% {
+    stroke-dashoffset: 74;
+  }
+  66% {
+    stroke-dashoffset: 147;
   }
   100% {
-    transform: rotate(360deg);
+    stroke-dashoffset: 221;
   }
+}
+@keyframes dotTriangle {
+  33% {
+    transform: translate(0, 0);
+  }
+  66% {
+    transform: translate(10px, -18px);
+  }
+  100% {
+    transform: translate(-10px, -18px);
+  }
+}
+@keyframes pathRect {
+  25% {
+    stroke-dashoffset: 64;
+  }
+  50% {
+    stroke-dashoffset: 128;
+  }
+  75% {
+    stroke-dashoffset: 192;
+  }
+  100% {
+    stroke-dashoffset: 256;
+  }
+}
+@keyframes dotRect {
+  25% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(18px, -18px);
+  }
+  75% {
+    transform: translate(0, -36px);
+  }
+  100% {
+    transform: translate(-18px, -18px);
+  }
+}
+@keyframes pathCircle {
+  25% {
+    stroke-dashoffset: 125;
+  }
+  50% {
+    stroke-dashoffset: 175;
+  }
+  75% {
+    stroke-dashoffset: 225;
+  }
+  100% {
+    stroke-dashoffset: 275;
+  }
+}
+div {
+  display: inline-block;
+  margin: 0 16px;
 }
 </style>
 
 <script>
-const $loading = document.querySelector('loader-modal')
-
 export default { 
   name: 'loader-modal',
   show(visible = true) {
-    $loading.shadowRoot.querySelector('loading')
+    document.querySelector('loader-modal')
       .style
       .visibility = visible ? 'visible' : 'collapse'
   }
