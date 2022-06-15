@@ -20,12 +20,14 @@ button {
 }
 button.click {
   transform: rotate(180deg);
-  transition: transform 0.2s linear;
 }
 @media (max-width: 800px) {
   button {
     transform: rotate(90deg);
     padding: 8px 0;
+  }
+  button.click {
+    transform: rotate(270deg);
   }
 }
 </style>
