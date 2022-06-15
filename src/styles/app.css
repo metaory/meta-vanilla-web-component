@@ -16,6 +16,7 @@
 * {
   margin: 0;
   padding: 0;
+  user-select: none;
   position: relative;
   box-sizing: border-box;
 }

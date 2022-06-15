@@ -14,7 +14,7 @@
 </style>
 
 <script>
-const MAX_STORAGE_LENGTH = 10
+const MAX_STORAGE_LENGTH = 7
 const STORAGE_KEY = 'currency-history'
 
 const $history = document.querySelector('history-component')
@@ -26,13 +26,8 @@ const prependToDom = ({ srcAmount, srcSymbol, dstAmount, dstSymbol}) => {
 }
 
 const fetchStorage = () => {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-  }
-  catch (err) {
-    localStorage.removeItem(STORAGE_KEY)
-    return []
-  }
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') }
+  catch (err) { localStorage.removeItem(STORAGE_KEY); return []; }
 }
 
 const addToStorage = (currencyProxy) => {
@@ -42,13 +37,13 @@ const addToStorage = (currencyProxy) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
 }
 
-setTimeout(() => fetchStorage().reverse().forEach((x) => prependToDom(x)), 0)
-
 window.addEventListener('converted', (event) => {
   const { currencyProxy } = event.detail
   prependToDom(currencyProxy)
   addToStorage(currencyProxy)
 })
+
+setTimeout(() => fetchStorage().reverse().forEach((x) => prependToDom(x)), 0)
 
 export default { name: 'history-component', }
 </script>

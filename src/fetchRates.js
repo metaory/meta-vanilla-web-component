@@ -12,7 +12,7 @@ export default async function(src, dst, amount = 1) {
     //   loader.show(false)
     //   resolve({ rates: { [dst]: (Math.random() * 1000).toFixed(2) } })
     //   alert.show('Fetched!', 'var(--success)')
-    // }, 2000)
+    // }, 1000)
 
     fetch(`https://api.apilayer.com/fixer/latest?base=${src}&symbols=${dst}&amount=${amount}`, {
       headers: {
