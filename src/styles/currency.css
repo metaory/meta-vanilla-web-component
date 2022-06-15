@@ -71,6 +71,9 @@ select:active, select:focus {
   outline: none;
   box-shadow: none;
 }
+div:hover:after {
+  border-top: 5px solid var(--hover);
+}
 div:after {
   content: "";
   position: absolute;
