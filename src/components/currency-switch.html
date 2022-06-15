@@ -6,19 +6,21 @@
 
 <style>
 button {
-  width: 3em;
-  height: 3em;
+  width: 3.5em;
+  height: 3.5em;
   border-radius: 50%;
   box-shadow: var(--dark-grey) 0px 0px 6px;
   border: none;
+  padding: 12px 0;
   color: var(--white);
   font-weight: bold;
   background: var(--brand);
-  padding: 4px 0;
   transform: rotate(0deg);
+  transition: background-color 1s ease;
   transition: transform 0.2s linear;
 }
-button.click {
+button:hover {
+  background: var(--accent);
   transform: rotate(180deg);
 }
 @media (max-width: 800px) {
@@ -26,7 +28,7 @@ button.click {
     transform: rotate(90deg);
     padding: 8px 0;
   }
-  button.click {
+  button:hover {
     transform: rotate(270deg);
   }
 }
@@ -37,8 +39,6 @@ export default {
   name: 'currency-switch',
   onClick() {
     window.dispatchEvent(new CustomEvent('switch:currency'))
-    document.querySelector('currency-switch')
-      .shadowRoot.querySelector('button').classList.toggle('click')
   }
 }
 </script>

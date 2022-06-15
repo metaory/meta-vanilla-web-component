@@ -1,6 +1,6 @@
 <template>
   <div>vanilla web component POC</div>
-  <button onclick="document.body.classList.toggle('dark-mode');">
+  <button onclick="document.body.classList.toggle('dark-mode');" title="toggle theme">
     <img src="./assets/theme.png" width="32">
   </button>
 </template>
@@ -26,6 +26,10 @@ img {
 }
 button:hover img {
   transform: rotate(180deg);
+}
+button:hover {
+  transition: background-color 1s ease;
+  background-color: var(--brand)
 }
 button {
   outline: none;

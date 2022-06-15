@@ -1,36 +1,39 @@
 <template>
-  <div class="alert">
+  <div>
     <strong>Alert!</strong>
     <span onclick="this.parentElement.style.display='none';">&times;</span> 
   </div>
 </template>
 
 <style>
-.alert {
+strong {
+  color: white;
+}
+div {
+  opacity: 0.8;
   display: none;
-  grid-template-columns: 10fr 1fr;
   position: fixed;
   z-index: 1;
   bottom: 0px;
-  width: 100%;
-  padding: 20px;
+  width: auto;
+  padding: 1rem 4rem 1rem 1rem;
   font-size: 1.5rem;
   color: black;
   align-items: center;
   background-color: var(--brand);
   box-shadow: var(--dark-grey) -4px -2px 6px;
-  transition:display .2s;
 }
 
 span {
   margin-left: 15px;
+  position: absolute;
+  right: 1rem;
   color: white; 
   font-weight: bold;
   float: right;
   font-size: 3rem;
   line-height: 20px;
   cursor: pointer;
-  transition: 0.3s;
 }
 
 span:hover {
@@ -45,14 +48,14 @@ export default {
   name: 'alert-component',
   // onClick() { },
   show(text, color) {
-    const $$alert = $alert.shadowRoot.querySelector('.alert')
+    const $$alert = $alert.shadowRoot.querySelector('div')
     const $$text = $alert.shadowRoot.querySelector('strong')
     $$text.innerText = text
     $$alert.style.backgroundColor = color
     $$alert.style.display = 'grid'
     setTimeout(() => {
       $$alert.style.display = 'none'
-    }, 3000)
+    }, 2000)
   }
 }
 </script>

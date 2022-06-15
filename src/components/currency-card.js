@@ -8,7 +8,7 @@ template.innerHTML = `
 <link rel="stylesheet" href="src/styles/currency.css">
 <span>$</span>
 <input type="number" name="currency" min="0" max="9999" value="1">
-<div class="select-dropdown">
+<div>
   <select>
     <option value="USD">USD</option>
     <option value="EUR">EUR</option>
@@ -96,7 +96,7 @@ class CurrencyCard extends HTMLElement {
   }
   copyResult ()  {
     navigator.clipboard.writeText(this.$input.value)
-    this.$alert.show('Copied!', 'var(--success)')
+    this.$alert.show('Copied!', 'var(--accent)')
   }
   static get observedAttributes() {
     return ['direction']
