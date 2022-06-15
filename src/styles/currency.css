@@ -25,6 +25,7 @@ input.disabled {
 input {
   font-family: Montserrat, Oswald, Helvetica, Arial, sans-serif;
   border: none;
+  /* color: var(--black); */
   background: var(--white);
   font-size: 2rem;
   font-weight: bold;

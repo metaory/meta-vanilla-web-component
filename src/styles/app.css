@@ -31,6 +31,7 @@ html,body {
 
 .dark-mode {
   color: white;
+  --black: var(--brand);
   --white: var(--dark);
   --grey: var(--darker);
   --dark-grey: var(--dark);

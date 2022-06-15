@@ -15,6 +15,12 @@ button {
   font-weight: bold;
   background: var(--brand);
   padding: 4px 0;
+  transform: rotate(0deg);
+  transition: transform 0.2s linear;
+}
+button.click {
+  transform: rotate(180deg);
+  transition: transform 0.2s linear;
 }
 @media (max-width: 800px) {
   button {
@@ -29,6 +35,8 @@ export default {
   name: 'currency-switch',
   onClick() {
     window.dispatchEvent(new CustomEvent('switch:currency'))
+    document.querySelector('currency-switch')
+      .shadowRoot.querySelector('button').classList.toggle('click')
   }
 }
 </script>
