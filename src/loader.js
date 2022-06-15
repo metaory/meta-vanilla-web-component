@@ -34,7 +34,6 @@ window.loadComponent = (() => {
     const getMethods = (settings) => {
       return Object.entries(settings).reduce((acc, [setting, value]) => {
         if (!setting.startsWith('on') && typeof value === 'function') {
-          console.log(':::', setting, value, typeof value)
           acc[setting] = value
         }
         return acc
@@ -63,7 +62,7 @@ window.loadComponent = (() => {
       }
 
       connectedCallback () {
-        this._populate()
+        this._atachNodes()
         this._attachListeners()
         this._attachMethods()
       }
@@ -77,7 +76,7 @@ window.loadComponent = (() => {
         this[property] = newValue
       }
 
-      _populate () {
+      _atachNodes () {
         this.shadow.appendChild(style.cloneNode(true))
         this.shadow.appendChild(document.importNode(template.content, true))
       }
@@ -90,7 +89,6 @@ window.loadComponent = (() => {
 
       _attachMethods () {
         Object.entries(methods).forEach(([method, value]) => {
-          console.log('****', { method, value })
           this[method] = value
         })
       }

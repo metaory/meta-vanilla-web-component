@@ -32,7 +32,7 @@ export default function (src, dst, amount = 1) {
       .catch(err => {
         console.error('E!:', err)
         alert.show(err.message, 'var(--negative)')
-        resolve({ rates: { [dst]: (Math.random() * 1000).toFixed(2) } })
+        resolve({ rates: { [dst]: (Math.random() * 100).toFixed(2) } })
       })
       .finally(() => {
         loader.show(false)
