@@ -9,7 +9,7 @@
   box-shadow: var(--dark-grey) 2px 2px 4px;
   align-items: center;
   justify-items: stretch;
-  border-radius: 8px;
+  border-radius: 1rem;
   height: 6rem;
   min-width: 14rem;
 }
