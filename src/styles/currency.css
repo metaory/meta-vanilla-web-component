@@ -5,10 +5,10 @@
   grid-gap: 0;
   place-items: end;
   background-color: var(--white);
-  box-shadow: var(--dark-grey) 4px 4px 8px;
+  box-shadow: var(--dark-grey) 2px 2px 4px;
   align-items: center;
   justify-items: stretch;
-  border-radius: 6px;
+  border-radius: 8px;
   height: 6rem;
   min-width: 14rem;
 }
@@ -74,7 +74,7 @@ input[type=number] {
   min-width: 6.5rem;
 
   border-right: solid var(--white) 3px;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 }
 .select-dropdown select:active, .select-dropdown select:focus {

@@ -47,7 +47,6 @@ main {
   grid-auto-flow: dense;
   grid-template-columns: 2fr 1fr 2fr;
   min-width: 100vw;
-  justify-items: stretch;
   gap: 1rem;
   place-items: center;
 }
