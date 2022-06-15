@@ -107,7 +107,6 @@ class CurrencyCard extends HTMLElement {
   attributeChangedCallback (property, oldValue, newValue) {
     if (oldValue === newValue) return
     this[property] = newValue
-    console.log('!!', newValue, this.direction)
   }
 }
 

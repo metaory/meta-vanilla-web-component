@@ -27,7 +27,7 @@ const prependToDom = ({ srcAmount, srcSymbol, dstAmount, dstSymbol}) => {
 }
 
 const fetchStorage = () => {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') }
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [] }
   catch (err) { localStorage.removeItem(STORAGE_KEY); return []; }
 }
 
@@ -44,7 +44,7 @@ window.addEventListener('converted', (event) => {
   addToStorage(currencyProxy)
 })
 
-setTimeout(() => fetchStorage().reverse().forEach((x) => prependToDom(x)), 0)
+setTimeout(() => fetchStorage().reverse().forEach(prependToDom), 0)
 
 export default { name: 'history-component', }
 </script>
