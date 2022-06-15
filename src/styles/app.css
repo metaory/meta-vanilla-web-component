@@ -40,7 +40,7 @@ main {
   background-color: var(--grey);
   max-width: 1200px;
   margin: 2rem 0;
-  padding: 4rem;
+  padding: 2rem;
   height: 50vh;
   display: grid;
   grid-gap: 1rem;
