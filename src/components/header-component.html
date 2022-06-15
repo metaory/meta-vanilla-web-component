@@ -1,7 +1,7 @@
 <template>
   <div>vanilla web component POC</div>
   <button onclick="document.body.classList.toggle('dark-mode');">
-    <img class="mama" src="./assets/theme.png" width="28">
+    <img src="./assets/theme.png" width="32">
   </button>
 </template>
 
@@ -19,6 +19,13 @@ div {
   font-weight: bold;
   padding: 4vh;
   text-align: left;
+}
+img {
+  transform: rotate(0deg);
+  transition: transform 0.2s linear;
+}
+button:hover img {
+  transform: rotate(180deg);
 }
 button {
   outline: none;
