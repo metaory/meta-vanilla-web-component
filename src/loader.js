@@ -30,6 +30,7 @@ window.loadComponent = (() => {
         return acc
       }, {})
     }
+
     const getMethods = (settings) => {
       return Object.entries(settings).reduce((acc, [setting, value]) => {
         if (!setting.startsWith('on') && typeof value === 'function') {
@@ -62,7 +63,7 @@ window.loadComponent = (() => {
       }
 
       connectedCallback () {
-        this._upcast()
+        this._populate()
         this._attachListeners()
         this._attachMethods()
       }
@@ -76,7 +77,7 @@ window.loadComponent = (() => {
         this[property] = newValue
       }
 
-      _upcast () {
+      _populate () {
         this.shadow.appendChild(style.cloneNode(true))
         this.shadow.appendChild(document.importNode(template.content, true))
       }
