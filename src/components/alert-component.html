@@ -35,10 +35,12 @@ span {
   font-size: 3rem;
   line-height: 20px;
   cursor: pointer;
+  transform: rotate(0deg);
+  transition: transform 0.2s linear;
 }
 
 span:hover {
-  color: var(--accent);
+  transform: rotate(90deg);
 }
 </style>
 
