@@ -41,7 +41,7 @@ main {
   max-width: 1200px;
   margin: 2rem 0;
   padding: 4rem;
-  height: 50vh;
+  height: 55vh;
   display: grid;
   grid-gap: 1rem;
   grid-auto-flow: dense;

@@ -9,6 +9,7 @@ const updateRates = async (bounce = 1000) => {
   inputTimeout = setTimeout(async () => {
     const { rates } = await fetchRates(srcSymbol, dstSymbol, srcAmount)
     currencyProxy.dstAmount = (rates[dstSymbol] * srcAmount).toFixed(2)
+    window.dispatchEvent(new CustomEvent('converted', {"detail": { currencyProxy }}))
   }, bounce)
 }
 
@@ -19,4 +20,3 @@ window.addEventListener('fetch', (event) => {
   updateRates(bounceRate)
 })
 
-// setInterval(() => window.location.reload(), 10000)

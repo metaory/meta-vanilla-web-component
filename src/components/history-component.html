@@ -1,0 +1,31 @@
+<template> </template>
+
+<style>
+:host {
+  display: grid;
+  place-content: center;
+  align-content: baseline;
+  height: 10rem;
+  max-height: 10rem;
+  background: -webkit-linear-gradient(var(--dark), var(--darker));
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+</style>
+
+<script>
+const $history = document.querySelector('history-component')
+
+// TODO localstorage
+window.addEventListener('converted', (event) => {
+  const { currencyProxy: { srcAmount, srcSymbol, dstAmount, dstSymbol} } = event.detail
+
+  const div = document.createElement("div");
+  div.innerText = `Converted ${srcAmount}${srcSymbol} to ${dstAmount}${dstSymbol} `
+
+  $history.shadowRoot.prepend(div)
+})
+
+export default { name: 'history-component', }
+</script>
