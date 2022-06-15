@@ -37,7 +37,7 @@ class CurrencyCard extends HTMLElement {
       : this.removeAttribute('direction')
   }
 
-  populate() {
+  _populate() {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
     this.$input = this.shadowRoot.querySelector('input')
     this.$select = this.shadowRoot.querySelector('select')
@@ -50,16 +50,16 @@ class CurrencyCard extends HTMLElement {
         this.$input.addEventListener('click', (event) => event.target.select())
         break
       case 'dst':
-        this.$input.addEventListener('click', (event) => this.copyResult())
+        this.$input.addEventListener('click', (event) => this._copyResult())
         this.$input.classList.add('disabled')
         this.$select.value = 'EUR'
         break
     }
   }
-  bindProxy() {
+  _bindProxy() {
     const _this = this
     window.addEventListener('render', () => {
-      _this.render()
+      _this._render()
     })
 
     function onSelectUpdate(evt) {
@@ -79,8 +79,7 @@ class CurrencyCard extends HTMLElement {
     this.$input.addEventListener("keyup", onInputKeyUp)
     this.$select.addEventListener("change", onSelectUpdate)
   }
-  render() {
-    console.log(' RENDER ')
+  _render() {
     const $src = document.querySelector("currency-card[direction=src]")
     const $dst = document.querySelector("currency-card[direction=dst]")
 
@@ -91,10 +90,10 @@ class CurrencyCard extends HTMLElement {
     $dst.shadowRoot.querySelector('select').value = currencyProxy.dstSymbol
   }
   connectedCallback() {
-    this.populate()
-    this.bindProxy()
+    this._populate()
+    this._bindProxy()
   }
-  copyResult ()  {
+  _copyResult ()  {
     navigator.clipboard.writeText(this.$input.value)
     this.$alert.show('Copied!', 'var(--accent)')
   }
