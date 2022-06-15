@@ -97,8 +97,9 @@ window.loadComponent = (() => {
     return customElements.define(name, UnityComponent)
   }
 
-  const loadComponent = (URL) =>
-    fetchAndParse(URL).then(getSettings).then(registerComponent)
+  const loadComponent = (URL) => fetchAndParse(URL)
+    .then(getSettings)
+    .then(registerComponent)
 
   return loadComponent
 })()
