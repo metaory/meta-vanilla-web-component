@@ -17,8 +17,9 @@ export default async function(src, dst, amount = 1) {
     fetch(`https://api.apilayer.com/fixer/latest?base=${src}&symbols=${dst}&amount=${amount}`, {
       headers: {
         'Content-Type': 'application/json',
-        'apikey': 'XQ3vQ3XkBKNIq2tN4RGPA2o4ZhEGo8NN' // TODO read from gh secrets
+        // 'apikey': 'XQ3vQ3XkBKNIq2tN4RGPA2o4ZhEGo8NN' // TODO read from gh secrets
         // 'apikey': 'ujucsc0WvJwnxeKGIk9aRKGmmRuKSffc' // TODO read from gh secrets
+        'apikey': '8y6JGnCQwveSeNSBKWiHgra8dixwLY35'
       },
     })
       .then(response => {
