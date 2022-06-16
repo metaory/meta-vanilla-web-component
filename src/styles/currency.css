@@ -2,36 +2,29 @@
   display: grid;
   grid-template-columns: 0fr 2fr 1fr;
   margin: 0 2rem;
-  grid-gap: 0;
-  place-items: end;
   place-content: center;
   background-color: var(--white);
-  box-shadow: var(--dark-grey) 2px 2px 4px;
-  align-items: center;
-  justify-items: stretch;
+  box-shadow: var(--dark-grey) 2px 2px 6px;
   border-radius: 1rem;
   height: 6rem;
-  min-width: 14rem;
 }
 span {
   padding-right: 4px;
-  color: var(--darker);
+  font-size: 1.2rem;
+  color: var(--disabled);
   padding: 1rem;
   pointer-events:none;
 }
 input.disabled {
-  color: var(--darker);
+  color: var(--disabled);
   cursor: copy;
 }
 input {
-  font-family: Montserrat, Oswald, Helvetica, Arial, sans-serif;
   border: none;
-  /* color: var(--black); */
   background: var(--white);
   font-size: 2rem;
   font-weight: bold;
-  place-self: normal;
-  max-width: 10rem;
+  max-width: 22vw;
 }
 input:focus {
   outline: 0;

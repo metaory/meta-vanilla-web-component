@@ -12,6 +12,16 @@
   --white: #FFF;
   --black: #000;
   --hover: var(--accent);
+  --disabled: var(--dark-grey);
+}
+
+.dark-mode {
+  color: white;
+  --white: var(--dark);
+  --grey: var(--darker);
+  --dark-grey: var(--dark);
+  --hover: var(--negative);
+  --disabled: var(--grey);
 }
 
 * {
@@ -32,26 +42,15 @@ html,body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.dark-mode {
-  color: white;
-  --white: var(--dark);
-  --grey: var(--darker);
-  --dark-grey: var(--dark);
-  --hover: var(--negative);
-}
-
 main {
   background-color: var(--grey);
-  max-width: 1200px;
   margin: 2rem 0;
   padding: 2rem;
   height: 50vh;
   display: grid;
   grid-gap: 1rem;
-  grid-auto-flow: dense;
   grid-template-columns: 2fr 1fr 2fr;
   min-width: 100vw;
-  gap: 1rem;
   place-items: center;
 }
 

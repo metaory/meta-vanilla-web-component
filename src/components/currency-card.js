@@ -1,5 +1,3 @@
-/* THIS FILE IS RAW WEB COMPONENT */
-
 import currencyProxy from '../store.js'
 
 const template = document.createElement('template')
@@ -18,7 +16,6 @@ template.innerHTML = `
 class CurrencyCard extends HTMLElement {
   $input
   $select
-  $alert
   constructor () {
     super()
     if (!this.shadowRoot) {
@@ -26,53 +23,40 @@ class CurrencyCard extends HTMLElement {
     }
   }
 
-  get direction () {
-    return this.getAttribute('direction')
-  }
-
-  set direction (val) {
-    val
-      ? this.setAttribute('direction', val)
-      : this.removeAttribute('direction')
-  }
-
   _attachNodes () {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
     this.$input = this.shadowRoot.querySelector('input')
     this.$select = this.shadowRoot.querySelector('select')
-    this.$alert = document.querySelector('alert-component')
 
+    // Set Default values
     switch (this.direction) {
       case 'src':
         this.$select.value = 'USD'
         this.$input.addEventListener('click', (event) => event.target.select())
         break
       case 'dst':
-        this.$input.addEventListener('click', (event) => this._copyResult())
-        this.$input.classList.add('disabled')
         this.$select.value = 'EUR'
+        this.$input.classList.add('disabled')
+        this.$input.setAttribute('readonly', true)
+        this.$input.addEventListener('click', (event) => this._copyResult())
         break
     }
   }
 
   _attachEvents () {
-    const _this = this
-    window.addEventListener('render', () => {
-      _this._render()
-    })
+    window.addEventListener('render', this._render)
 
-    function onSelectUpdate (evt) {
-      currencyProxy[`${_this.direction}Symbol`] = evt.target.value
+    const onSelectUpdate = (evt) => {
+      currencyProxy[`${this.direction}Symbol`] = evt.target.value
     }
 
-    function onInputKeyUp (evt) {
-      if (_this.direction === 'dst') {
-        this.value = currencyProxy.dstAmount
-        _this.$input.blur()
-        return false
+    const onInputKeyUp = (evt) => {
+      const { value } = evt.target
+      if (value) {
+        currencyProxy[`${this.direction}Amount`] = value
+      } else {
+        evt.target.value = currencyProxy.srcAmount
       }
-      currencyProxy[`${_this.direction}Amount`] = evt.target.value
-      return false
     }
 
     this.$input.addEventListener('keyup', onInputKeyUp)
@@ -97,7 +81,7 @@ class CurrencyCard extends HTMLElement {
 
   _copyResult () {
     navigator.clipboard.writeText(this.$input.value)
-    this.$alert.show('Copied!', 'accent')
+    document.querySelector('alert-component').show('Copied!', 'accent')
   }
 
   static get observedAttributes () {
