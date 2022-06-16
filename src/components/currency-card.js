@@ -67,6 +67,11 @@ class CurrencyCard extends HTMLElement {
     const $src = document.querySelector('currency-card[direction=src]')
     const $dst = document.querySelector('currency-card[direction=dst]')
 
+    const currencySymbolMap = { USD: '$', EUR: '&euro;', JPY: '&yen;' }
+
+    $src.shadowRoot.querySelector('span').innerHTML = currencySymbolMap[currencyProxy.srcSymbol]
+    $dst.shadowRoot.querySelector('span').innerHTML = currencySymbolMap[currencyProxy.dstSymbol]
+
     $src.shadowRoot.querySelector('input').value = currencyProxy.srcAmount
     $dst.shadowRoot.querySelector('input').value = currencyProxy.dstAmount
 
