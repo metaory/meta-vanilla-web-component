@@ -51,6 +51,9 @@ main {
 }
 
 @media only screen and (max-width: 800px) {
-  main { grid-template-columns: 1fr; }
+  main {
+    align-content: start;
+    grid-template-columns: 1fr;
+  }
 }
 
