@@ -38,13 +38,14 @@ class CurrencyCard extends HTMLElement {
         this.$select.value = 'EUR'
         this.$input.classList.add('disabled')
         this.$input.setAttribute('readonly', true)
-        this.$input.addEventListener('click', (event) => this._copyResult())
+        this.$input.addEventListener('click', () => this._copyResult())
         break
     }
   }
 
   _attachEvents () {
     window.addEventListener('render', this._render)
+    window.addEventListener('converted', () => { this.$input.blur() })
 
     const onSelectUpdate = (evt) => {
       currencyProxy[`${this.direction}Symbol`] = evt.target.value
