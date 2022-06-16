@@ -9,10 +9,10 @@ const handler = {
     window.dispatchEvent(new CustomEvent('render'))
     console.debug('Proxy updated', ':', prop, ':', value)
 
-    if (['srcSymbol', 'dstSymbol', 'srcAmount'].includes(prop)) {
-      const bounceRate = prop.endsWith('Symbol') ? 0 : 1000
-      window.dispatchEvent(new CustomEvent('fetch', { detail: { bounceRate } }))
-    }
+    if (prop === 'dstAmount') return true
+
+    const bounceRate = prop.endsWith('Symbol') ? 0 : 1000
+    window.dispatchEvent(new CustomEvent('fetch', { detail: { bounceRate } }))
     return true
   }
 }
