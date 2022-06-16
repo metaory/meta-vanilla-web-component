@@ -21,3 +21,8 @@ window.addEventListener('fetch', (event) => {
   const { bounceRate } = event.detail
   updateRates(bounceRate)
 })
+
+// Setting dark mode based on system preference
+window.matchMedia('(prefers-color-scheme: dark)').matches
+  ? document.body.classList.add('dark-mode')
+  : document.body.classList.remove('dark-mode')
