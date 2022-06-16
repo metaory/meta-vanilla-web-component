@@ -22,7 +22,8 @@ window.addEventListener('fetch', (event) => {
   updateRates(bounceRate)
 })
 
-// Setting dark mode based on system preference
-window.matchMedia('(prefers-color-scheme: dark)').matches
-  ? document.body.classList.add('dark-mode')
-  : document.body.classList.remove('dark-mode')
+// Setting Dark Mode based on System Preference
+setTimeout(() =>
+  window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? document.body.classList.add('dark-mode')
+    : document.body.classList.remove('dark-mode'), 0)
