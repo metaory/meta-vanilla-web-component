@@ -19,13 +19,15 @@ b {
 
 <script>
 const MAX_STORAGE_LENGTH = 7
+const SYMBOLS = { USD: '$', EUR: '&euro;', JPY: '&yen;' }
 const STORAGE_KEY = 'currency-history'
 
 const $history = document.querySelector('history-component')
 
 const prependToDom = ({ srcAmount, srcSymbol, dstAmount, dstSymbol}) => {
   const div = document.createElement("div");
-  div.innerHTML = `<b>${srcAmount}</b>${srcSymbol} &#10093; <b>${dstAmount}</b>${dstSymbol}`
+  div.innerHTML = `<b>${SYMBOLS[srcSymbol]}${srcAmount}</b>${srcSymbol} &#10093;
+                   <b>${SYMBOLS[dstSymbol]}${dstAmount}</b>${dstSymbol}`
   $history.shadowRoot.prepend(div)
 }
 
