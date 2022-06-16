@@ -1,6 +1,6 @@
 :host {
   display: grid;
-  grid-template-columns: 0fr 2fr 1fr;
+  grid-template-columns: 0fr 3fr 1fr;
   margin: 0 2rem;
   place-content: center;
   align-items: center;

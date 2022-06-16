@@ -1,12 +1,10 @@
-/* @import "./src/styles/loader.css"; */
-
 :root {
   --brand: #1aa892;
   --accent: #553897;
   --success: #0da74d;
   --negative: #b74271;
-  --grey: #cacaca;
-  --dark-grey: #808080;
+  --grey: #b3b2b8;
+  --dark-grey: #928da5;
   --darker: #2f2c3a;
   --dark: #464257;
   --white: #FFF;
@@ -16,7 +14,6 @@
 }
 
 .dark-mode {
-  color: white;
   --white: var(--dark);
   --grey: var(--darker);
   --dark-grey: var(--dark);
@@ -50,7 +47,6 @@ main {
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: 2fr 1fr 2fr;
-  min-width: 100vw;
   place-items: center;
 }
 

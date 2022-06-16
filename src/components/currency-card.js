@@ -86,7 +86,7 @@ class CurrencyCard extends HTMLElement {
 
   _copyResult () {
     navigator.clipboard.writeText(this.$input.value)
-    document.querySelector('alert-component').show('Copied!', 'accent')
+    document.querySelector('alert-component').show('Copied!')
   }
 
   static get observedAttributes () {
