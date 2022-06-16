@@ -5,7 +5,7 @@ const loadCache = (src, dst) =>
   localStorage.getItem(`${src}-${dst}`)
 
 export default function (src, dst, amount = 1) {
-  console.log('FETCH RATES:', { src, dst, amount })
+  console.log('Fetch rates:', { src, dst, amount })
 
   const loader = document.querySelector('loader-modal')
   const alert = document.querySelector('alert-component')
@@ -14,7 +14,8 @@ export default function (src, dst, amount = 1) {
   const cachedValue = loadCache(src, dst)
   if (cachedValue) {
     loader.show(false)
-    alert.show('Fetched from Cache!', 'success')
+    alert.show('Fetched rates from Cache!', 'success')
+    console.debug('Fetched rates from cache', ':', cachedValue)
     return { rates: { [dst]: cachedValue } }
   }
 
@@ -40,7 +41,7 @@ export default function (src, dst, amount = 1) {
     })
       .then(response => {
         if (response.ok) {
-          alert.show('Fetched!', 'success')
+          alert.show('Fetched rates!', 'success')
           const promise = response.json()
           promise.then((result) => {
             setCache(src, dst, result.rates[dst])

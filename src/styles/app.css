@@ -1,3 +1,5 @@
+ @import url('fonts.css');
+
 :root {
   --brand: #1aa892;
   --accent: #553897;
@@ -34,8 +36,7 @@ html,body {
   margin: 0;
   overflow: hidden;
   background-color: var(--grey);
-  font-display: fallback;
-  font-family: Montserrat, Oswald, Helvetica, Arial, sans-serif;
+  font-family: Oswald, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

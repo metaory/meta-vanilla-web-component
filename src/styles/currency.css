@@ -10,7 +10,6 @@
   height: 6rem;
 }
 span {
-  font-family: arial;
   font-size: 1.5rem;
   color: var(--disabled);
   padding: 1rem;
@@ -22,6 +21,7 @@ input.disabled {
 input {
   border: none;
   background: var(--white);
+  font-family:  Oswald;
   font-size: 2rem;
   font-weight: bold;
   max-width: 20vw;
@@ -49,6 +49,7 @@ input[type=number] {
 select {
   color: var(--brand);
   font-size: 2rem;
+  font-family:  Oswald;
   font-weight: bold;
   padding: 8px 24px 8px 10px;
   border: none;

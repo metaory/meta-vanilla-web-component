@@ -6,8 +6,8 @@ const handler = {
   },
   set: (obj, prop, value) => {
     obj[prop] = value
-    // window[prop] = value
     window.dispatchEvent(new CustomEvent('render'))
+    console.debug('Proxy updated', ':', prop, ':', value)
 
     if (['srcSymbol', 'dstSymbol', 'srcAmount'].includes(prop)) {
       const bounceRate = prop.endsWith('Symbol') ? 0 : 1000
@@ -23,11 +23,4 @@ window.addEventListener('switch:currency', () => {
   const { srcSymbol: oldSrc, dstSymbol: oldDst } = currencyProxy
   currencyProxy.srcSymbol = oldDst
   currencyProxy.dstSymbol = oldSrc
-  window.dispatchEvent(new CustomEvent('fetch', { detail: { bounceRate: 0 } }))
 })
-
-// window.addEventListener('update:proxy', (event) => {
-//   for (const key in event.detail) {
-//     currencyProxy[key] = event.detail[key]
-//   }
-// })
