@@ -14,7 +14,7 @@ export default function (src, dst, amount = 1) {
   const cachedValue = loadCache(src, dst)
   if (cachedValue) {
     loader.show(false)
-    alert.show('Fetched from Cache!', 'var(--success)')
+    alert.show('Fetched from Cache!', 'success')
     return { rates: { [dst]: cachedValue } }
   }
 
@@ -25,7 +25,7 @@ export default function (src, dst, amount = 1) {
     // return setTimeout(() => {
     //   loader.show(false)
     //   resolve({ rates: { [dst]: (Math.random() * 1000).toFixed(2) } })
-    //   alert.show('Fetched!', 'var(--success)')
+    //   alert.show('Fetched!', 'success')
     // }, 1000)
     /* * ********** * */
 
@@ -39,7 +39,7 @@ export default function (src, dst, amount = 1) {
     })
       .then(response => {
         if (response.ok) {
-          alert.show('Fetched!', 'var(--success)')
+          alert.show('Fetched!', 'success')
           const promise = response.json()
           promise.then((result) => {
             setCache(src, dst, result.rates[dst])
@@ -52,7 +52,7 @@ export default function (src, dst, amount = 1) {
       })
       .catch(err => {
         console.error('E!:', err)
-        alert.show(err.message, 'var(--negative)')
+        alert.show(err.message, 'negative')
         resolve({ rates: { [dst]: (Math.random() * 100).toFixed(2) } })
       })
       .finally(() => {

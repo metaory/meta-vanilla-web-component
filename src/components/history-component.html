@@ -30,8 +30,13 @@ const prependToDom = ({ srcAmount, srcSymbol, dstAmount, dstSymbol}) => {
 }
 
 const fetchStorage = () => {
-  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [] }
-  catch (err) { localStorage.removeItem(STORAGE_KEY); return []; }
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []
+  }
+  catch (err) {
+    localStorage.removeItem(STORAGE_KEY)
+    return []
+  }
 }
 
 const addToStorage = (currencyProxy) => {

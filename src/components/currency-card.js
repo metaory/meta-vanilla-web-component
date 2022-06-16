@@ -36,7 +36,7 @@ class CurrencyCard extends HTMLElement {
       : this.removeAttribute('direction')
   }
 
-  _populate () {
+  _attachNodes () {
     this.shadowRoot.appendChild(template.content.cloneNode(true))
     this.$input = this.shadowRoot.querySelector('input')
     this.$select = this.shadowRoot.querySelector('select')
@@ -55,7 +55,7 @@ class CurrencyCard extends HTMLElement {
     }
   }
 
-  _bindProxy () {
+  _attachEvents () {
     const _this = this
     window.addEventListener('render', () => {
       _this._render()
@@ -91,13 +91,13 @@ class CurrencyCard extends HTMLElement {
   }
 
   connectedCallback () {
-    this._populate()
-    this._bindProxy()
+    this._attachNodes()
+    this._attachEvents()
   }
 
   _copyResult () {
     navigator.clipboard.writeText(this.$input.value)
-    this.$alert.show('Copied!', 'var(--accent)')
+    this.$alert.show('Copied!', 'accent')
   }
 
   static get observedAttributes () {

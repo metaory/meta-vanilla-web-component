@@ -49,13 +49,13 @@ const $alert = document.querySelector('alert-component')
 
 export default {
   name: 'alert-component',
-  show(text, color) {
+  show(text, color = 'accent', timeout = 2000) {
     const $box = $alert.shadowRoot.querySelector('div')
     const $text = $alert.shadowRoot.querySelector('strong')
     $text.innerText = text
-    $box.style.backgroundColor = color
+    $box.style.backgroundColor = `var(--${color})`
     $box.style.display = 'grid'
-    setTimeout(() => $box.style.display = 'none', 2000)
+    setTimeout(() => $box.style.display = 'none', timeout)
   }
 }
 </script>
