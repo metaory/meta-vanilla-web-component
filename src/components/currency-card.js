@@ -87,7 +87,7 @@ class CurrencyCard extends HTMLElement {
 
   _copyResult () {
     navigator.clipboard.writeText(this.$input.value)
-    'ontouchstart' in document.documentElement && window.navigator.vibrate(300)
+    window.vibrate()
     document.querySelector('alert-component').show('Copied!')
   }
 

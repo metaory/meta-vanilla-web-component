@@ -23,21 +23,15 @@ window.loadComponent = (() => {
     const jsURL = URL.createObjectURL(jsFile)
 
     const getListeners = (settings) => {
-      return Object.entries(settings).reduce((acc, [setting, value]) => {
-        if (setting.startsWith('on')) {
-          acc[setting[2].toLowerCase() + setting.substr(3)] = value
-        }
-        return acc
-      }, {})
+      if (!settings.events) return {}
+      return Object.entries(settings.events)
+        .reduce((acc, [event, value]) => ({ ...acc, [event]: value }), {})
     }
 
     const getMethods = (settings) => {
-      return Object.entries(settings).reduce((acc, [setting, value]) => {
-        if (!setting.startsWith('on') && typeof value === 'function') {
-          acc[setting] = value
-        }
-        return acc
-      }, {})
+      if (!settings.methods) return {}
+      return Object.entries(settings.methods)
+        .reduce((acc, [method, value]) => ({ ...acc, [method]: value }), {})
     }
 
     return import(jsURL).then((module) => {
@@ -103,3 +97,6 @@ window.loadComponent = (() => {
 
   return loadComponent
 })()
+
+window.vibrate = () => 'ontouchstart' in document.documentElement &&
+  window.navigator.vibrate(300)

@@ -155,10 +155,12 @@ div svg circle {
 <script>
 export default { 
   name: 'loader-modal',
-  show(visible = true) {
-    document.querySelector('loader-modal')
-      .style
-      .visibility = visible ? 'visible' : 'collapse'
+  methods: {
+    show(visible = true) {
+      document.querySelector('loader-modal')
+        .style
+        .visibility = visible ? 'visible' : 'collapse'
+    }
   }
 }
 </script>

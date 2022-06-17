@@ -39,8 +39,10 @@ button:hover {
 <script>
 export default {
   name: 'currency-switch',
-  onClick() {
-    window.dispatchEvent(new CustomEvent('switch:currency'))
+  events: {
+    click() {
+      window.dispatchEvent(new CustomEvent('switch:currency'))
+    }
   }
 }
 </script>
