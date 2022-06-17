@@ -3,8 +3,8 @@ import currencyProxy from '../store.js'
 const template = document.createElement('template')
 template.innerHTML = `
 <link rel="stylesheet" href="src/styles/currency.css">
-<span style="visibility: hidden;>$</span>
-<input style="visibility: hidden;" type="number" name="currency" value="1">
+<span>$</span>
+<input type="number" name="currency" value="1">
 <div>
   <select style="visibility: hidden;">
     <option value="USD">USD</option>
