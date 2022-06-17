@@ -10,7 +10,6 @@
   height: 6rem;
 }
 span {
-  visibility: visible !important;
   font-size: 1.5rem;
   color: var(--disabled);
   padding: 1rem;
@@ -21,7 +20,6 @@ input.disabled {
 }
 input {
   border: none;
-  visibility: visible !important;
   background: var(--white);
   font-family:  Oswald, monospace;
   font-size: 2rem;
@@ -49,7 +47,6 @@ input[type=number] {
 }
 
 select {
-  visibility: visible !important;
   color: var(--brand);
   font-size: 2rem;
   font-family:  Oswald, monospace;

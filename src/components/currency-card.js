@@ -6,7 +6,7 @@ template.innerHTML = `
 <span>$</span>
 <input type="number" name="currency" value="1">
 <div>
-  <select style="visibility: hidden;">
+  <select>
     <option value="USD">USD</option>
     <option value="EUR">EUR</option>
     <option value="JPY">JPY</option>
