@@ -16,15 +16,16 @@ const updateRates = async (bounce = 1000) => {
   }, bounce)
 }
 
-window.onload = () => updateRates(0)
+window.onload = () => {
+  updateRates()
+
+  // Setting Dark Mode based on System Preference
+  window.matchMedia('(prefers-color-scheme: dark)').matches
+    ? document.body.classList.add('dark-mode')
+    : document.body.classList.remove('dark-mode')
+}
 
 window.addEventListener('fetch', (event) => {
   const { bounceRate } = event.detail
   updateRates(bounceRate)
 })
-
-// Setting Dark Mode based on System Preference
-setTimeout(() =>
-  window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? document.body.classList.add('dark-mode')
-    : document.body.classList.remove('dark-mode'), 0)
