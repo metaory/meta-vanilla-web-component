@@ -10,6 +10,7 @@
   height: 6rem;
 }
 span {
+  visibility: visible !important;
   font-size: 1.5rem;
   color: var(--disabled);
   padding: 1rem;
