@@ -36,7 +36,8 @@ html,body {
   margin: 0;
   overflow: hidden;
   background-color: var(--grey);
-  font-family: Oswald, sans-serif;
+  font-family: Oswald, monospace;
+  font-display: fallback;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

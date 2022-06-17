@@ -16,7 +16,7 @@ const updateRates = async (bounce = 1000) => {
   }, bounce)
 }
 
-updateRates()
+window.onload = () => updateRates(0)
 
 window.addEventListener('fetch', (event) => {
   const { bounceRate } = event.detail

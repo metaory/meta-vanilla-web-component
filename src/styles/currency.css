@@ -20,8 +20,9 @@ input.disabled {
 }
 input {
   border: none;
+  visibility: visible !important;
   background: var(--white);
-  font-family:  Oswald;
+  font-family:  Oswald, monospace;
   font-size: 2rem;
   font-weight: bold;
   max-width: 20vw;
@@ -47,9 +48,10 @@ input[type=number] {
 }
 
 select {
+  visibility: visible !important;
   color: var(--brand);
   font-size: 2rem;
-  font-family:  Oswald;
+  font-family:  Oswald, monospace;
   font-weight: bold;
   padding: 8px 24px 8px 10px;
   border: none;

@@ -4,9 +4,9 @@ const template = document.createElement('template')
 template.innerHTML = `
 <link rel="stylesheet" href="src/styles/currency.css">
 <span>$</span>
-<input type="number" name="currency" min="0" max="9999" value="1">
+<input style="visibility: hidden;" type="number" name="currency" value="1">
 <div>
-  <select>
+  <select style="visibility: hidden;">
     <option value="USD">USD</option>
     <option value="EUR">EUR</option>
     <option value="JPY">JPY</option>
@@ -102,3 +102,6 @@ class CurrencyCard extends HTMLElement {
 }
 
 customElements.define('currency-card', CurrencyCard)
+
+customElements.whenDefined('currency-card').then(() =>
+  console.log('::', 'currency-card', 'custom element defined.'))
