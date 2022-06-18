@@ -23,6 +23,11 @@ window.onload = () => {
   window.matchMedia('(prefers-color-scheme: dark)').matches
     ? document.body.classList.add('dark-mode')
     : document.body.classList.remove('dark-mode')
+
+  // Populate app version
+  fetch('./src/components/version.html')
+    .then(response => response.text())
+    .then(data => { document.querySelector('app-version').innerHTML = data })
 }
 
 window.addEventListener('fetch', (event) => {

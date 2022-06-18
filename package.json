@@ -1,8 +1,14 @@
 {
   "name": "meta-vanilla-web-component-poc",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "author": "Pou Yan <metaory@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "deploy": "npm run bump-version && npm run write-version && npm run commit-version",
+    "commit-version": "git add src/components/version.html",
+    "bump-version": "npm version patch --no-git-tag-version",
+    "write-version": "echo \"$(cat package.json | jq -r '.version')\" > src/components/version.html"
+  },
   "devDependencies": {
     "eslint": "^8.17.0",
     "eslint-config-standard": "^17.0.0",
