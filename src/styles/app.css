@@ -62,6 +62,7 @@ main {
 app-version {
    position: absolute;
    right: 4px;
+   bottom: 2px;
    opacity: 0.8;
    font-family: Oswald, monospace;
    font-weight: 200;
