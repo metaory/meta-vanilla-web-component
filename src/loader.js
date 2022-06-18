@@ -94,11 +94,9 @@ window.loadComponent = (() => {
     return customElements.define(name, UnityComponent)
   }
 
-  const loadComponent = (URL) => fetchAndParse(URL)
+  return (URL) => fetchAndParse(URL)
     .then(getSettings)
     .then(registerComponent)
-
-  return loadComponent
 })()
 
 window.vibrate = () => 'ontouchstart' in document.documentElement &&
