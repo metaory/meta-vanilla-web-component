@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="screenshot.png" width="400">
+</p>
+
+---
+
 # Frontend Developer Task
 
 - Your task is to implement a basic currency converter which converts values between Euro, US Dollar and Japanese Yen. Use [fixer.io](https://fixer.io/) API endpoints to get the latest exchange rates.
@@ -21,3 +27,4 @@
 
 ### Desktop
 <img src="assets/design-desktop.png" width="80%"/>
+
