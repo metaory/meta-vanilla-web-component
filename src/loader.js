@@ -22,21 +22,15 @@ window.loadComponent = (() => {
     const jsFile = new Blob([script.textContent], { type: 'application/javascript' })
     const jsURL = URL.createObjectURL(jsFile)
 
-    const getListeners = (settings) => {
-      if (!settings.events) return {}
-      return Object.entries(settings.events)
-        .reduce((acc, [event, value]) => ({ ...acc, [event]: value }), {})
-    }
-
-    const getMethods = (settings) => {
-      if (!settings.methods) return {}
-      return Object.entries(settings.methods)
-        .reduce((acc, [method, value]) => ({ ...acc, [method]: value }), {})
+    const getSetting = (settings, key) => {
+      if (!settings[key]) return {}
+      return Object.entries(settings[key])
+        .reduce((acc, [setting, value]) => ({ ...acc, [setting]: value }), {})
     }
 
     return import(jsURL).then((module) => {
-      const listeners = getListeners(module.default)
-      const methods = getMethods(module.default)
+      const listeners = getSetting(module.default, 'events')
+      const methods = getSetting(module.default, 'methods')
 
       return {
         name: module.default.name,
