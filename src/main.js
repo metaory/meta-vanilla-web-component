@@ -34,3 +34,6 @@ window.addEventListener('fetch', (event) => {
   const { bounceRate } = event.detail
   updateRates(bounceRate)
 })
+
+window.vibrate = () => 'ontouchstart' in document.documentElement &&
+  window.navigator.vibrate(300)

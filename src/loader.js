@@ -22,24 +22,13 @@ window.loadComponent = (() => {
     const jsFile = new Blob([script.textContent], { type: 'application/javascript' })
     const jsURL = URL.createObjectURL(jsFile)
 
-    const getSetting = (settings, key) => {
-      if (!settings[key]) return {}
-      return Object.entries(settings[key])
-        .reduce((acc, [setting, value]) => ({ ...acc, [setting]: value }), {})
-    }
-
-    return import(jsURL).then((module) => {
-      const listeners = getSetting(module.default, 'events')
-      const methods = getSetting(module.default, 'methods')
-
-      return {
-        name: module.default.name,
-        listeners,
-        methods,
-        template,
-        style
-      }
-    })
+    return import(jsURL).then((module) => ({
+      name: module.default.name,
+      listeners: module.default.events || {},
+      methods: module.default.methods || {},
+      template,
+      style
+    }))
   }
 
   const registerComponent = ({ template, style, name, listeners, methods }) => {
@@ -83,7 +72,7 @@ window.loadComponent = (() => {
     }
 
     customElements.whenDefined(name).then(() =>
-      console.log('::', name, 'custom element defined.'))
+      console.debug('::', name, 'custom element defined.'))
 
     return customElements.define(name, UnityComponent)
   }
@@ -92,6 +81,3 @@ window.loadComponent = (() => {
     .then(getSettings)
     .then(registerComponent)
 })()
-
-window.vibrate = () => 'ontouchstart' in document.documentElement &&
-  window.navigator.vibrate(300)
