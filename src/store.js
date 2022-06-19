@@ -18,7 +18,7 @@ const currencyProxy = new Proxy(currency, handler)
 export { currencyProxy as default }
 
 window.addEventListener('switch:currency', () => {
-  const { srcSymbol: oldSrc, dstSymbol: oldDst } = currencyProxy
-  currencyProxy.srcSymbol = oldDst
-  currencyProxy.dstSymbol = oldSrc
+  const { srcSymbol, dstSymbol } = currencyProxy
+  currencyProxy.srcSymbol = dstSymbol
+  currencyProxy.dstSymbol = srcSymbol
 })
