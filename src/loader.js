@@ -39,7 +39,7 @@ window.loadComponent = (() => {
       }
 
       connectedCallback () {
-        this._atachNodes()
+        this._attachNodes()
         this._attachListeners()
         this._attachMethods()
       }
@@ -53,7 +53,7 @@ window.loadComponent = (() => {
         this[property] = newValue
       }
 
-      _atachNodes () {
+      _attachNodes () {
         this.shadow.appendChild(style.cloneNode(true))
         this.shadow.appendChild(document.importNode(template.content, true))
       }
