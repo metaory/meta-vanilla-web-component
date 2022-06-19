@@ -4,23 +4,34 @@ const setCache = (src, dst, value) =>
 const loadCache = (src, dst) =>
   localStorage.getItem(`${src}-${dst}`)
 
+// TODO read from gh secrets
+const FIXER_API_KEY = 'rdck0YfBV3knHMWInijXr1UH8cnNYTov'
+// const FIXER_API_KEY = 'XQ3vQ3XkBKNIq2tN4RGPA2o4ZhEGo8NN'
+// const FIXER_API_KEY = 'ujucsc0WvJwnxeKGIk9aRKGmmRuKSffc'
+// const FIXER_API_KEY = '8y6JGnCQwveSeNSBKWiHgra8dixwLY35'
+const FIXER_API_BASE_URL = 'https://api.apilayer.com/fixer/latest'
+
 export default function (src, dst, amount = 1) {
-  console.log('Fetch rates:', { src, dst, amount })
+  console.log('==> Fetch rates for:', { src, dst, amount })
 
   const loader = document.querySelector('loader-modal')
   const alert = document.querySelector('alert-component')
 
-  // Attempting Cache
-  const cachedValue = loadCache(src, dst)
-  if (cachedValue) {
-    loader.show(false)
-    alert.show('Fetched rates from Cache!', 'success')
-    console.debug('Fetched rates from cache', ':', cachedValue)
-    return { rates: { [dst]: cachedValue } }
-  }
+  loader.show(true)
 
   return new Promise((resolve) => {
-    loader.show(true)
+    console.debug('Attempting to load from Cache...')
+
+    const cachedValue = loadCache(src, dst)
+    if (cachedValue) {
+      alert.show('Fetched rates from Cache!', 'success')
+      console.debug('Fetched rates from cache', ':', cachedValue)
+      setTimeout(() => { // for aesthetic reasons only
+        loader.show(false)
+        resolve({ rates: { [dst]: cachedValue } })
+      }, 1000)
+      return
+    }
 
     /* * DEBUG MODE * */
     // return setTimeout(() => {
@@ -30,13 +41,11 @@ export default function (src, dst, amount = 1) {
     // }, 1000)
     /* * ********** * */
 
-    fetch(`https://api.apilayer.com/fixer/latest?base=${src}&symbols=${dst}&amount=${amount}`, {
+    console.debug('Fetching from live api...')
+    fetch(`${FIXER_API_BASE_URL}?base=${src}&symbols=${dst}&amount=${amount}`, {
       headers: {
         'Content-Type': 'application/json',
-        // apikey: 'XQ3vQ3XkBKNIq2tN4RGPA2o4ZhEGo8NN' // TODO read from gh secrets
-        // apikey: 'ujucsc0WvJwnxeKGIk9aRKGmmRuKSffc' // TODO read from gh secrets
-        // apikey: '8y6JGnCQwveSeNSBKWiHgra8dixwLY35' // TODO read from gh secrets
-        apikey: 'rdck0YfBV3knHMWInijXr1UH8cnNYTov' // TODO read from gh secrets
+        apikey: FIXER_API_KEY
       }
     })
       .then(response => {
