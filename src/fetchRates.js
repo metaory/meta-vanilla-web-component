@@ -24,10 +24,10 @@ export default function (src, dst, amount = 1) {
 
     const cachedValue = loadCache(src, dst)
     if (cachedValue) {
-      alert.show('Fetched rates from Cache!', 'success')
       console.debug('Fetched rates from cache', ':', cachedValue)
       setTimeout(() => { // for aesthetic reasons only
         loader.show(false)
+        alert.show('Fetched rates from Cache!')
         resolve({ rates: { [dst]: cachedValue } })
       }, 1000)
       return
