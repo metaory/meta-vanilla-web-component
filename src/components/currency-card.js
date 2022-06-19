@@ -104,4 +104,4 @@ class CurrencyCard extends HTMLElement {
 customElements.define('currency-card', CurrencyCard)
 
 customElements.whenDefined('currency-card').then(() =>
-  console.debug('::', 'currency-card', 'custom element defined.'))
+  console.debug('>', 'currency-card', 'custom element defined.'))

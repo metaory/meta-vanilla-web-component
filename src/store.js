@@ -6,7 +6,7 @@ const handler = {
   },
   set: (obj, prop, value) => {
     obj[prop] = value
-    console.debug('Proxy updated', ':', prop, ':', value)
+    console.debug('>>', 'Proxy updated', ':', prop, ':', value)
     window.dispatchEvent(new CustomEvent('render'))
     if (prop === 'dstAmount') return true
     const bounceRate = prop.endsWith('Symbol') ? 0 : 1000

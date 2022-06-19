@@ -72,7 +72,7 @@ window.loadComponent = (() => {
     }
 
     customElements.whenDefined(name).then(() =>
-      console.debug('::', name, 'custom element defined.'))
+      console.debug('>', name, 'custom element defined.'))
 
     return customElements.define(name, UnityComponent)
   }
