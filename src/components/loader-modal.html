@@ -157,9 +157,7 @@ export default {
   name: 'loader-modal',
   methods: {
     show(visible = true) {
-      document.querySelector('loader-modal')
-        .style
-        .visibility = visible ? 'visible' : 'collapse'
+      this.style.visibility = visible ? 'visible' : 'collapse'
     }
   }
 }

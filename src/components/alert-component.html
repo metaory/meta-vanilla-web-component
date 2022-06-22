@@ -45,14 +45,12 @@ span:hover {
 </style>
 
 <script>
-const $alert = document.querySelector('alert-component')
-
 export default {
   name: 'alert-component',
   methods: {
     show(text, color = 'accent', timeout = 2000) {
-      const $box = $alert.shadowRoot.querySelector('div')
-      const $text = $alert.shadowRoot.querySelector('strong')
+      const $box = this.shadowRoot.querySelector('div')
+      const $text = this.shadowRoot.querySelector('strong')
       $text.innerHTML = text
       $box.style.backgroundColor = `var(--${color})`
       $box.style.display = 'grid'
