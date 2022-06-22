@@ -2,6 +2,7 @@
   <img src="screenshot.png" width="400">
 </p>
 
+# <a href="https://metaory.github.io/meta-vanilla-web-component/" target="_blank">Live Demo</a>
 ---
 
 # Frontend Developer Task
