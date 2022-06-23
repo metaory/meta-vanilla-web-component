@@ -43,7 +43,6 @@ class CurrencyCard extends HTMLElement {
 
   _attachEvents () {
     window.addEventListener('render', this._render)
-    window.addEventListener('converted', () => { this.$input.blur() })
 
     const onSelectUpdate = (evt) => {
       currencyProxy[`${this.direction}Symbol`] = evt.target.value
@@ -71,6 +70,7 @@ class CurrencyCard extends HTMLElement {
     $src.shadowRoot.querySelector('span').innerHTML = SYMBOLS[currencyProxy.srcSymbol]
     $dst.shadowRoot.querySelector('span').innerHTML = SYMBOLS[currencyProxy.dstSymbol]
 
+    $src.shadowRoot.querySelector('input').blur()
     $src.shadowRoot.querySelector('input').value = currencyProxy.srcAmount
     $dst.shadowRoot.querySelector('input').value = currencyProxy.dstAmount
 

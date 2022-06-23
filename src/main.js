@@ -11,8 +11,6 @@ const updateRates = async (bounce = 1000) => {
   inputTimeout = setTimeout(async () => {
     const { rates } = await fetchRates(srcSymbol, dstSymbol, srcAmount)
     currencyProxy.rates = rates[dstSymbol]
-    window.vibrate()
-    window.dispatchEvent(new CustomEvent('converted', { detail: { currencyProxy } }))
   }, bounce)
 }
 

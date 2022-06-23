@@ -23,7 +23,7 @@ const STORAGE_KEY = 'currency-history'
 
 const $history = document.querySelector('history-component')
 
-const prependToDom = ({ srcAmount, srcSymbol, dstAmount, dstSymbol}) => {
+const prependToDom = ({ srcAmount, srcSymbol, dstAmount, dstSymbol }) => {
   const div = document.createElement("div");
   div.innerHTML = `${SYMBOLS[srcSymbol]}<b>${srcAmount}</b>${srcSymbol} &#10093;
                    ${SYMBOLS[dstSymbol]}<b>${dstAmount}</b>${dstSymbol}`
@@ -47,10 +47,11 @@ const addToStorage = (currencyProxy) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
 }
 
-window.addEventListener('converted', (event) => {
+window.addEventListener('render', (event) => {
   const { currencyProxy } = event.detail
   prependToDom(currencyProxy)
   addToStorage(currencyProxy)
+  window.vibrate()
 })
 
 setTimeout(() => fetchStorage().reverse().forEach(prependToDom), 0)

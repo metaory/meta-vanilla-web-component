@@ -4,7 +4,7 @@ const currency = {
   srcAmount: 1,
   dstSymbol: 'EUR',
   dstAmount: 0,
-  rate: 0
+  rates: 0
 }
 
 const handler = {
@@ -16,7 +16,7 @@ const handler = {
     console.debug('>>', 'Proxy updated', ':', prop, ':', value)
     if (prop === 'rates') {
       obj.dstAmount = (obj.rates * obj.srcAmount).toFixed(2)
-      window.dispatchEvent(new CustomEvent('render'))
+      window.dispatchEvent(new CustomEvent('render', { detail: { currencyProxy: obj } }))
       return true
     }
     const bounceRate = prop.endsWith('Symbol') ? 0 : 1000
