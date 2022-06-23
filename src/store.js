@@ -1,4 +1,11 @@
-const currency = { srcSymbol: 'USD', srcAmount: 1, dstSymbol: 'EUR', dstAmount: 0 }
+// Initial State
+const currency = {
+  srcSymbol: 'USD',
+  srcAmount: 1,
+  dstSymbol: 'EUR',
+  dstAmount: 0,
+  rate: 0
+}
 
 const handler = {
   get (target, property) {
@@ -7,8 +14,11 @@ const handler = {
   set: (obj, prop, value) => {
     obj[prop] = value
     console.debug('>>', 'Proxy updated', ':', prop, ':', value)
-    window.dispatchEvent(new CustomEvent('render'))
-    if (prop === 'dstAmount') return true
+    if (prop === 'rates') {
+      obj.dstAmount = (obj.rates * obj.srcAmount).toFixed(2)
+      window.dispatchEvent(new CustomEvent('render'))
+      return true
+    }
     const bounceRate = prop.endsWith('Symbol') ? 0 : 1000
     window.dispatchEvent(new CustomEvent('fetch', { detail: { bounceRate } }))
     return true
