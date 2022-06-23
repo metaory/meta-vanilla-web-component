@@ -35,7 +35,7 @@ window.loadComponent = (() => {
     class UnityComponent extends HTMLElement {
       constructor () {
         super()
-        this.shadow = this.attachShadow({ mode: 'open' })
+        this.attachShadow({ mode: 'open' })
       }
 
       connectedCallback () {
@@ -54,8 +54,8 @@ window.loadComponent = (() => {
       }
 
       _attachNodes () {
-        this.shadow.appendChild(style.cloneNode(true))
-        this.shadow.appendChild(document.importNode(template.content, true))
+        this.shadowRoot.appendChild(style.cloneNode(true))
+        this.shadowRoot.appendChild(document.importNode(template.content, true))
       }
 
       _attachListeners () {

@@ -1,6 +1,6 @@
 {
   "name": "meta-vanilla-web-component-poc",
-  "version": "1.0.13",
+  "version": "1.0.15",
   "author": "Pou Yan <metaory@gmail.com>",
   "license": "MIT",
   "scripts": {

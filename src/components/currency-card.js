@@ -18,9 +18,7 @@ class CurrencyCard extends HTMLElement {
   $select
   constructor () {
     super()
-    if (!this.shadowRoot) {
-      this.attachShadow({ mode: 'open' })
-    }
+    this.attachShadow({ mode: 'open' })
   }
 
   _attachNodes () {
