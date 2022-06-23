@@ -4,7 +4,7 @@ const template = document.createElement('template')
 template.innerHTML = `
 <link rel="stylesheet" href="src/styles/currency.css">
 <span>$</span>
-<input type="number" name="currency" value="1">
+<input type="number" name="currency" value="${currencyProxy.srcAmount}">
 <div>
   <select>
     <option value="USD">USD</option>
@@ -29,11 +29,11 @@ class CurrencyCard extends HTMLElement {
     // Set Default values
     switch (this.direction) {
       case 'src':
-        this.$select.value = 'USD'
+        this.$select.value = currencyProxy.srcSymbol
         this.$input.addEventListener('click', (event) => event.target.select())
         break
       case 'dst':
-        this.$select.value = 'EUR'
+        this.$select.value = currencyProxy.dstSymbol
         this.$input.classList.add('disabled')
         this.$input.setAttribute('readonly', true)
         this.$input.addEventListener('click', () => this._copyResult())
