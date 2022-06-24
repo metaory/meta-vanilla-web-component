@@ -42,7 +42,7 @@ class CurrencyCard extends HTMLElement {
   }
 
   _attachEvents () {
-    window.addEventListener('render', this._render)
+    window.addEventListener('render', () => this._render())
 
     const onSelectUpdate = (evt) => {
       currencyProxy[`${this.direction}Symbol`] = evt.target.value
@@ -62,20 +62,18 @@ class CurrencyCard extends HTMLElement {
   }
 
   _render () {
-    const $src = document.querySelector('currency-card[direction=src]')
-    const $dst = document.querySelector('currency-card[direction=dst]')
+    const el = document.querySelector(`currency-card[direction=${this.direction}]`)
 
-    const SYMBOLS = { USD: '$', EUR: '&euro;', JPY: '&yen;' }
+    el.shadowRoot.querySelector('span')
+      .innerHTML = window.SYMBOLS[currencyProxy[this.direction + 'Symbol']]
 
-    $src.shadowRoot.querySelector('span').innerHTML = SYMBOLS[currencyProxy.srcSymbol]
-    $dst.shadowRoot.querySelector('span').innerHTML = SYMBOLS[currencyProxy.dstSymbol]
+    el.shadowRoot.querySelector('input')
+      .value = currencyProxy[this.direction + 'Amount']
 
-    $src.shadowRoot.querySelector('input').blur()
-    $src.shadowRoot.querySelector('input').value = currencyProxy.srcAmount
-    $dst.shadowRoot.querySelector('input').value = currencyProxy.dstAmount
+    el.shadowRoot.querySelector('select')
+      .value = currencyProxy[this.direction + 'Symbol']
 
-    $src.shadowRoot.querySelector('select').value = currencyProxy.srcSymbol
-    $dst.shadowRoot.querySelector('select').value = currencyProxy.dstSymbol
+    el.shadowRoot.querySelector('input').blur()
   }
 
   connectedCallback () {

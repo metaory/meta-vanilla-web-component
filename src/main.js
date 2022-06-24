@@ -35,3 +35,5 @@ window.addEventListener('fetch', (event) => {
 
 window.vibrate = () => 'ontouchstart' in document.documentElement &&
   window.navigator.vibrate(300)
+
+window.SYMBOLS = { USD: '$', EUR: '&euro;', JPY: '&yen;' }
