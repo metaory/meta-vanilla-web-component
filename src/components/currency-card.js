@@ -62,18 +62,17 @@ class CurrencyCard extends HTMLElement {
   }
 
   _render () {
-    const el = document.querySelector(`currency-card[direction=${this.direction}]`)
+    const el = document
+      .querySelector(`currency-card[direction=${this.direction}]`)
+      .shadowRoot
 
-    el.shadowRoot.querySelector('span')
-      .innerHTML = window.SYMBOLS[currencyProxy[this.direction + 'Symbol']]
+    el.querySelector('span').innerHTML = window.SYMBOLS[currencyProxy[this.direction + 'Symbol']]
 
-    el.shadowRoot.querySelector('input')
-      .value = currencyProxy[this.direction + 'Amount']
+    el.querySelector('input').value = currencyProxy[this.direction + 'Amount']
 
-    el.shadowRoot.querySelector('select')
-      .value = currencyProxy[this.direction + 'Symbol']
+    el.querySelector('select').value = currencyProxy[this.direction + 'Symbol']
 
-    el.shadowRoot.querySelector('input').blur()
+    el.querySelector('input').blur()
   }
 
   connectedCallback () {
