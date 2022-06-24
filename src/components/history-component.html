@@ -47,8 +47,7 @@ const addToStorage = (currencyProxy) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
 }
 
-window.addEventListener('render', (event) => {
-  const { currencyProxy } = event.detail
+window.addEventListener('render', ({ detail: currencyProxy }) => {
   prependToDom(currencyProxy)
   addToStorage(currencyProxy)
   window.vibrate()
