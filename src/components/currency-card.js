@@ -42,8 +42,6 @@ class CurrencyCard extends HTMLElement {
   }
 
   _attachEvents () {
-    window.addEventListener('render', () => this._render())
-
     const onSelectUpdate = (evt) => {
       currencyProxy[`${this.direction}Symbol`] = evt.target.value
     }
@@ -59,6 +57,7 @@ class CurrencyCard extends HTMLElement {
 
     this.$input.addEventListener('keyup', onInputKeyUp)
     this.$select.addEventListener('change', onSelectUpdate)
+    window.addEventListener('render', () => this._render())
   }
 
   _render () {
