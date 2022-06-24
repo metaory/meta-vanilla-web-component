@@ -27,13 +27,13 @@ class CurrencyCard extends HTMLElement {
     this.$select = this.shadowRoot.querySelector('select')
 
     // Set Default values
+    this.$select.value = currencyProxy[this.direction + 'Symbol']
+
     switch (this.direction) {
       case 'src':
-        this.$select.value = currencyProxy.srcSymbol
         this.$input.addEventListener('click', (event) => event.target.select())
         break
       case 'dst':
-        this.$select.value = currencyProxy.dstSymbol
         this.$input.classList.add('disabled')
         this.$input.setAttribute('readonly', true)
         this.$input.addEventListener('click', () => this._copyResult())
