@@ -20,7 +20,7 @@ const handler = {
       return true
     }
     const bounceRate = prop.endsWith('Symbol') ? 0 : 1000
-    window.dispatchEvent(new CustomEvent('fetch', { detail: { bounceRate } }))
+    window.dispatchEvent(new CustomEvent('fetch', { detail: bounceRate }))
     return true
   }
 }

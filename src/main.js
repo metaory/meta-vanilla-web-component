@@ -14,26 +14,25 @@ const updateRates = async (bounce = 1000) => {
   }, bounce)
 }
 
-window.onload = () => {
-  updateRates()
+// Populate app version
+fetch('./src/components/version.html')
+  .then(response => response.text())
+  .then(data => { document.querySelector('app-version').innerHTML = data })
 
-  // Populate app version
-  fetch('./src/components/version.html')
-    .then(response => response.text())
-    .then(data => { document.querySelector('app-version').innerHTML = data })
-}
 // Setting Dark Mode based on System Preference
 window.matchMedia('(prefers-color-scheme: dark)').matches
   ? document.body.classList.add('dark-mode')
   : document.body.classList.remove('dark-mode')
 
+// Initial load
+window.onload = () => updateRates()
 
-window.addEventListener('fetch', (event) => {
-  const { bounceRate } = event.detail
-  updateRates(bounceRate)
-})
+// Update fetch event
+window.addEventListener('fetch', ({ detail }) => updateRates(detail))
 
-window.vibrate = () => 'ontouchstart' in document.documentElement &&
-  window.navigator.vibrate(300)
+// Global mobile safe vibrate
+window.vibrate = (ms = 300) => 'ontouchstart' in document.documentElement &&
+  window.navigator.vibrate(ms)
 
+// Global currency symbols
 window.SYMBOLS = { USD: '$', EUR: '&euro;', JPY: '&yen;' }
