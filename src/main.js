@@ -17,16 +17,16 @@ const updateRates = async (bounce = 1000) => {
 window.onload = () => {
   updateRates()
 
-  // Setting Dark Mode based on System Preference
-  window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? document.body.classList.add('dark-mode')
-    : document.body.classList.remove('dark-mode')
-
   // Populate app version
   fetch('./src/components/version.html')
     .then(response => response.text())
     .then(data => { document.querySelector('app-version').innerHTML = data })
 }
+// Setting Dark Mode based on System Preference
+window.matchMedia('(prefers-color-scheme: dark)').matches
+  ? document.body.classList.add('dark-mode')
+  : document.body.classList.remove('dark-mode')
+
 
 window.addEventListener('fetch', (event) => {
   const { bounceRate } = event.detail

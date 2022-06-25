@@ -3,6 +3,7 @@ import currencyProxy from '../store.js'
 const template = document.createElement('template')
 template.innerHTML = `
 <link rel="stylesheet" href="src/styles/currency.css">
+<style> :host { visibility: hidden; } </style>
 <span>$</span>
 <input type="number" name="currency" value="${currencyProxy.srcAmount}">
 <div>

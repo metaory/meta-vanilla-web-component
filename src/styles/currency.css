@@ -1,4 +1,5 @@
 :host {
+  visibility: visible !important; /* FOUK */
   display: grid;
   grid-template-columns: 0fr 3fr 1fr;
   margin: 0 2rem;
