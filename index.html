@@ -13,7 +13,7 @@
     <header-component></header-component>
     <main>
       <currency-component direction="src"></currency-component>
-      <currency-switch></currency-switch>
+      <switch-component></switch-component>
       <currency-component direction="dst"></currency-component>
     </main>
     <history-component></history-component>
@@ -25,13 +25,13 @@
 
     <script>
     Promise.all([
-      loadComponent('src/components/header-component.html'),
-      loadComponent('src/components/currency-switch.html'),
-      loadComponent('src/components/currency-component.html'),
-      loadComponent('src/components/history-component.html'),
       loadComponent('src/components/alert-component.html'),
-      loadComponent('src/components/loader-modal.html'),
+      loadComponent('src/components/currency-component.html'),
+      loadComponent('src/components/switch-component.html'),
       loadComponent('src/components/footer-component.html'),
+      loadComponent('src/components/header-component.html'),
+      loadComponent('src/components/history-component.html'),
+      loadComponent('src/components/loader-modal.html'),
     ]).then(() => console.debug('[ App loaded ]'))
     </script>
   </body>
