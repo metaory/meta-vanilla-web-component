@@ -1,3 +1,4 @@
+
 window.loadComponent = (() => {
   const fetchAndParse = (URL) => {
     return fetch(URL).then((response) => {
@@ -10,28 +11,28 @@ window.loadComponent = (() => {
       const style = head.querySelector('style')
       const script = head.querySelector('script')
 
-      return {
-        template,
-        style,
-        script
-      }
+      return { template, style, script }
     })
   }
 
-  const getSettings = ({ template, style, script }) => {
+  const getSettings = async ({ template, style, script }) => {
     const jsFile = new Blob([script.textContent], { type: 'application/javascript' })
     const jsURL = URL.createObjectURL(jsFile)
 
-    return import(jsURL).then((module) => ({
-      name: module.default.name,
-      listeners: module.default.events || {},
-      methods: module.default.methods || {},
+    const store = await import('./store.js')
+    const module = await import(jsURL)
+    return {
       template,
-      style
-    }))
+      style,
+      store: store.default,
+      name: module.default.name,
+      mounted: module.default.mounted || (() => {}), /* noop */
+      listeners: module.default.events || {},
+      methods: module.default.methods || {}
+    }
   }
 
-  const registerComponent = ({ template, style, name, listeners, methods }) => {
+  const registerComponent = ({ template, style, store, name, mounted, listeners, methods }) => {
     class UnityComponent extends HTMLElement {
       constructor () {
         super()
@@ -42,6 +43,7 @@ window.loadComponent = (() => {
         this._attachNodes()
         this._attachListeners()
         this._attachMethods()
+        mounted(this, store)
       }
 
       static get observedAttributes () {

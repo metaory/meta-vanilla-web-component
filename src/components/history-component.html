@@ -47,13 +47,19 @@ const addToStorage = (currencyProxy) => {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(list))
 }
 
-window.addEventListener('render', ({ detail: currencyProxy }) => {
-  prependToDom(currencyProxy)
-  addToStorage(currencyProxy)
-  window.vibrate()
-})
-
-setTimeout(() => fetchStorage().reverse().forEach(prependToDom), 0)
-
-export default { name: 'history-component', }
+export default {
+  name: 'history-component',
+  methods: {
+    render(store) {
+      prependToDom(store)
+      addToStorage(store)
+      window.vibrate()
+    }
+  },
+  mounted () {
+    fetchStorage()
+      .reverse()
+      .forEach(prependToDom)
+  }
+}
 </script>

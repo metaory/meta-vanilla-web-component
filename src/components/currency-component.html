@@ -1,0 +1,77 @@
+<template>
+  <style> :host { visibility: hidden; } </style>
+  <span></span>
+  <input type="number" name="currency" min="0" value="1">
+  <div>
+    <select>
+      <option value="USD">USD</option>
+      <option value="EUR">EUR</option>
+      <option value="JPY">JPY</option>
+    </select>
+  </div>
+</template>
+
+<style>
+@import "./src/styles/currency.css";
+</style>
+
+<script>
+const name = 'currency-component'
+export default {
+  name,
+  mounted (component, store) {
+    const dir = component.getAttribute('direction')
+
+    const $input = component.shadowRoot.querySelector('input')
+    const $select = component.shadowRoot.querySelector('select')
+
+    $select.value = store[dir + 'Symbol']
+
+    const _copyResult = () => {
+      navigator.clipboard.writeText($input.value)
+      window.vibrate()
+      document.querySelector('alert-component').show('Copied!')
+    }
+
+    switch (dir) {
+      case 'src':
+        $input.addEventListener('click', (event) => event.target.select())
+        break
+      case 'dst':
+        $input.classList.add('disabled')
+        $input.setAttribute('readonly', true)
+        $input.addEventListener('click', () => _copyResult())
+        break
+    }
+    const onSelectUpdate = (evt) => {
+      store[`${dir}Symbol`] = evt.target.value
+    }
+
+    const onInputKeyUp = (evt) => {
+      const { value } = evt.target
+      if (value) {
+        store[`${dir}Amount`] = value
+      } else {
+        evt.target.value = store.srcAmount
+      }
+    }
+
+    $input.addEventListener('keyup', onInputKeyUp)
+    $select.addEventListener('change', onSelectUpdate)
+  },
+  methods: {
+    render(store) {
+      const dir = this.getAttribute('direction')
+      const sr = this.shadowRoot
+
+      sr.querySelector('span').innerHTML = window.SYMBOLS[store[dir + 'Symbol']]
+
+      sr.querySelector('input').value = store[dir + 'Amount']
+
+      sr.querySelector('select').value = store[dir + 'Symbol']
+
+      sr.querySelector('input').blur()
+    }
+  }
+}
+</script>

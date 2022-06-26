@@ -1,4 +1,3 @@
-import './components/currency-card.js'
 import currencyProxy from './store.js'
 import fetchRates from './fetchRates.js'
 
