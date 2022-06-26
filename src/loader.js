@@ -5,6 +5,7 @@ window.loadComponent = (() => {
 
     const parser = new DOMParser()
     const document = parser.parseFromString(html, 'text/html')
+
     const head = document.head
     const template = head.querySelector('template')
     const style = head.querySelector('style')
