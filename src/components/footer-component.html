@@ -1,5 +1,11 @@
 <template>
-  <span><p>made with <i>&#128420;</i> by</p><a href="mailto:metaory@gmail.com">metaory@gmail.com</a></span>
+  <span>
+    <p>made with <i>&#128420;</i> by</p>
+    <a href="mailto:metaory@gmail.com">metaory@gmail.com</a>
+  </span>
+  <button onclick="window.confirm('are you sure?') && localStorage.clear()">
+    CLEAR CACHE
+  </button>
 </template>
 
 <style>
@@ -48,7 +54,19 @@ i {
     background-position: 200% center;
   }
 }
-
+button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  border: none;
+  background-color: var(--grey);
+  color: var(--dark-grey);
+}
+button:hover {
+  color: var(--hover);
+  font-weight: bold;
+  cursor: pointer;
+}
 </style>
 
 <script>
