@@ -5,10 +5,7 @@ const loadCache = (src, dst) =>
   localStorage.getItem(`${src}-${dst}`)
 
 // TODO read from gh secrets
-const FIXER_API_KEY = 'rdck0YfBV3knHMWInijXr1UH8cnNYTov'
-// const FIXER_API_KEY = 'XQ3vQ3XkBKNIq2tN4RGPA2o4ZhEGo8NN'
-// const FIXER_API_KEY = 'ujucsc0WvJwnxeKGIk9aRKGmmRuKSffc'
-// const FIXER_API_KEY = '8y6JGnCQwveSeNSBKWiHgra8dixwLY35'
+const FIXER_API_KEY = 'ZYWnXplaoiQ6JgijnDOUAPf2I6HiGfI8'
 const FIXER_API_BASE_URL = 'https://api.apilayer.com/fixer/latest'
 
 export default function (src, dst, amount = 1) {
