@@ -12,7 +12,7 @@
 
 ---
 
-#### <a href="https://metaory.github.io/meta-vanilla-web-component/" target="_blank">Live Demo</a>=
+#### <a href="https://metaory.github.io/meta-vanilla-web-component/" target="_blank">Live Demo</a>
 
 ### Screenshot
 
